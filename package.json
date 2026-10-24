@@ -1,0 +1,22 @@
+{
+  "name": "sibela",
+  "version": "1.0.0",
+  "description": "SiBELA - Sistem Interaktif Bela Negara untuk MA Palattae",
+  "main": "index.html",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/output.css --minify",
+    "watch:css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch"
+  },
+  "keywords": [
+    "sibela",
+    "bela-negara",
+    "pendidikan-pancasila",
+    "ma-palattae",
+    "addie"
+  ],
+  "author": "Mustamin (Amin) - PTIK UNM",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

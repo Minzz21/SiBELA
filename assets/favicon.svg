@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Shield Background -->
+  <path d="M32 4L10 12V28C10 44 19.5 56 32 60C44.5 56 54 44 54 28V12L32 4Z" fill="#0F6B4F" stroke="#E3A92B" stroke-width="3"/>
+  <!-- Gold Inner Accent -->
+  <path d="M32 10L16 16V28C16 40 23 49 32 53C41 49 48 40 48 28V16L32 10Z" fill="#0A4A37"/>
+  <!-- Indonesian Flag Colors Inside Shield -->
+  <path d="M22 22H42V29H22V22Z" fill="#EF4444"/>
+  <path d="M22 29H42V36H22V29Z" fill="#FFFFFF"/>
+  <!-- Gold Star in Center -->
+  <path d="M32 30L33.5 34.5H38.2L34.4 37.3L35.9 41.8L32 39L28.1 41.8L29.6 37.3L25.8 34.5H30.5L32 30Z" fill="#E3A92B"/>
+</svg>
