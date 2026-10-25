@@ -54,78 +54,73 @@ export function render() {
 
       <!-- ===== HERO ===== -->
       <section>
-        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 py-8 sm:px-10 sm:py-10">
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
+        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 py-8 sm:px-10 sm:py-12 border border-emerald-800/40 shadow-soft">
+          <!-- Subtle Ambient Aura Elements -->
+          <div class="hero-aura-1 absolute -top-24 -right-20 w-96 h-96 rounded-full bg-primary/40 blur-3xl pointer-events-none"></div>
+          <div class="hero-aura-2 absolute -bottom-24 -left-20 w-80 h-80 rounded-full bg-accent/20 blur-3xl pointer-events-none"></div>
 
-            <div class="max-w-2xl">
-              <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
-                ${namaSiswa
-                  ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
-                  : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
-              </h1>
+          <div class="relative z-10 max-w-2xl">
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
+              ${namaSiswa
+                ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
+                : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
+            </h1>
 
-              <div class="flex items-center gap-2 mb-6">
-                <button type="button" id="btn-open-modal-nama"
-                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
-                         bg-white/10 hover:bg-white/20 text-emerald-100 hover:text-white
-                         border border-white/15 transition-all cursor-pointer">
-                  ${IC.pencil}
-                  <span>${namaSiswa ? 'Ubah nama panggilan' : 'Masukkan nama panggilan'}</span>
-                </button>
-              </div>
-
-              <p class="text-emerald-200 text-sm sm:text-base leading-relaxed mb-7 max-w-xl">
-                Media pembelajaran terpadu Pendidikan Pancasila Kelas X — Sishankamnas,
-                diplomasi aktif Indonesia, dan mind map bela negara.
-              </p>
-
-              <div class="flex flex-wrap items-center gap-3">
-                <a href="#/modul1"
-                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-secondary
-                         font-bold text-sm hover:bg-accent-hover active:scale-95 transition-all">
-                  <span>Mulai Belajar</span>
-                  ${IC.arrow}
-                </a>
-                <a href="#/kuis"
-                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
-                         bg-white/10 hover:bg-white/20 text-white font-semibold text-sm
-                         border border-white/20 active:scale-95 transition-all">
-                  Kuis Evaluasi
-                </a>
-              </div>
+            <div class="flex items-center gap-2 mb-6">
+              <button type="button" id="btn-open-modal-nama"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                       bg-white/10 hover:bg-white/20 text-emerald-100 hover:text-white
+                       border border-white/15 transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer">
+                ${IC.pencil}
+                <span>${namaSiswa ? 'Ubah nama panggilan' : 'Masukkan nama panggilan'}</span>
+              </button>
             </div>
 
-            <!-- Foto Hero Kanan -->
-            <div class="hidden md:flex lg:flex justify-end items-end flex-shrink-0 self-end lg:self-center -mb-8 sm:-mb-10 lg:-mb-10 lg:-mr-4">
-              <img src="assets/images/hero-presiden.png" alt="Presiden RI" class="h-64 sm:h-72 lg:h-80 w-auto object-contain object-bottom pointer-events-none drop-shadow-2xl">
-            </div>
+            <p class="text-emerald-200 text-sm sm:text-base leading-relaxed mb-7 max-w-xl">
+              Media pembelajaran terpadu Pendidikan Pancasila Kelas X — Sishankamnas,
+              diplomasi aktif Indonesia, dan mind map bela negara.
+            </p>
 
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="#/modul1"
+                class="btn-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-secondary
+                       font-bold text-sm hover:bg-accent-hover hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
+                <span>Mulai Belajar</span>
+                <span class="transition-transform duration-200 group-hover:translate-x-1">${IC.arrow}</span>
+              </a>
+              <a href="#/kuis"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
+                       bg-white/10 hover:bg-white/20 text-white font-semibold text-sm
+                       border border-white/20 hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
+                Kuis Evaluasi
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ===== PROGRES BELAJAR ===== -->
-      <section class="bg-white border border-gray-100 rounded-2xl p-5 sm:p-6">
+      <section class="bg-white border border-gray-100/90 rounded-2xl p-5 sm:p-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div class="flex items-center justify-between mb-3">
           <div>
             <h2 class="text-sm font-bold text-gray-900">Progres Capaian Pembelajaran</h2>
             <p class="text-xs text-gray-500 mt-0.5">${completedCount} dari 4 aktivitas selesai</p>
           </div>
-          <span class="text-2xl font-black text-primary" id="beranda-progress-number">${progressPercent}%</span>
+          <span class="text-2xl font-black text-primary transition-all duration-500" id="beranda-progress-number">${progressPercent}%</span>
         </div>
 
-        <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden mb-4">
+        <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden mb-4 p-0.5">
           <div id="beranda-progress-bar"
-            class="h-full bg-primary rounded-full transition-all duration-700 ease-out"
+            class="h-full bg-gradient-to-r from-primary to-emerald-500 rounded-full transition-all duration-1000 ease-out"
             style="width: 0%">
           </div>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
           ${stepItems.map(item => `
-            <div class="flex items-center gap-1.5 text-xs ${item.done ? 'text-primary' : 'text-gray-400'}">
-              <span class="flex-shrink-0 w-4 h-4 rounded-full border flex items-center justify-center
-                           ${item.done ? 'bg-primary border-primary text-white' : 'border-gray-300'}">
+            <div class="flex items-center gap-1.5 text-xs ${item.done ? 'text-primary' : 'text-gray-400'} transition-colors duration-200">
+              <span class="flex-shrink-0 w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-300
+                           ${item.done ? 'bg-primary border-primary text-white scale-105 shadow-xs' : 'border-gray-300'}">
                 ${item.done ? IC.check : ''}
               </span>
               <span class="font-medium truncate">${item.label}</span>
@@ -135,32 +130,34 @@ export function render() {
       </section>
 
       <!-- ===== KUTIPAN MOTIVASI ===== -->
-      <section class="bg-white border border-gray-100 rounded-2xl p-5 sm:p-6">
+      <section class="bg-white border border-gray-100/90 rounded-2xl p-5 sm:p-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
         <div class="flex items-start justify-between gap-4">
-          <div class="space-y-2 flex-1 min-w-0">
+          <div class="space-y-2 flex-1 min-w-0" id="quote-container">
             <div class="flex items-center gap-1.5 text-xs font-semibold text-gray-400 mb-1">
               ${IC.quote}
               <span>Motivasi Bela Negara</span>
             </div>
-            <blockquote class="text-base sm:text-lg font-bold text-gray-900 leading-snug" id="quote-text">
+            <blockquote class="text-base sm:text-lg font-bold text-gray-900 leading-snug transition-all duration-300" id="quote-text">
               "${activeQuote.teks}"
             </blockquote>
-            <p class="text-xs font-semibold text-primary" id="quote-tokoh">— ${activeQuote.tokoh}</p>
+            <p class="text-xs font-semibold text-primary transition-all duration-300" id="quote-tokoh">— ${activeQuote.tokoh}</p>
 
             <div class="mt-3 pt-3 border-t border-gray-100 flex items-start gap-2.5">
               ${IC.target}
               <div class="text-xs">
                 <span class="font-bold text-gray-700 block mb-0.5">Tantangan Aksi Hari Ini</span>
-                <span class="text-gray-600 leading-relaxed" id="quote-tantangan">${activeQuote.tantangan}</span>
+                <span class="text-gray-600 leading-relaxed transition-all duration-300" id="quote-tantangan">${activeQuote.tantangan}</span>
               </div>
             </div>
           </div>
 
           <button type="button" id="btn-shuffle-quote"
-            class="p-2 rounded-lg text-gray-400 hover:text-primary hover:bg-gray-50
-                   border border-gray-200 transition-all hover:rotate-180 flex-shrink-0 cursor-pointer"
+            class="p-2 rounded-lg text-gray-400 hover:text-primary hover:bg-emerald-50/60
+                   border border-gray-200 active:scale-90 transition-all duration-300 flex-shrink-0 cursor-pointer"
             title="Ganti kutipan">
-            ${IC.refresh}
+            <span class="inline-block transition-transform duration-500" id="btn-shuffle-icon">
+              ${IC.refresh}
+            </span>
           </button>
         </div>
       </section>
@@ -175,25 +172,25 @@ export function render() {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           ${modules.map(m => `
             <a href="${m.href}"
-              class="group bg-white border border-gray-100 hover:border-primary/30
+              class="group bg-white border border-gray-100 hover:border-primary/40
                      rounded-2xl p-5 flex flex-col justify-between
-                     hover:-translate-y-0.5 hover:shadow-sm transition-all duration-200">
+                     hover:-translate-y-1.5 hover:shadow-md transition-all duration-200">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-primary">${m.icon}</span>
+                  <span class="text-primary group-hover:scale-110 transition-transform duration-200 inline-block">${m.icon}</span>
                   ${m.done
-                    ? `<span class="flex items-center gap-1 text-[10px] font-semibold text-primary">
+                    ? `<span class="flex items-center gap-1 text-[10px] font-semibold text-primary bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
                          ${IC.check}<span>Selesai</span>
                        </span>`
                     : ''}
                 </div>
                 <div class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-0.5">${m.label}</div>
-                <h3 class="text-sm font-bold text-gray-900 mb-1.5 group-hover:text-primary transition-colors leading-snug">${m.title}</h3>
+                <h3 class="text-sm font-bold text-gray-900 mb-1.5 group-hover:text-primary transition-colors duration-200 leading-snug">${m.title}</h3>
                 <p class="text-xs text-gray-500 leading-relaxed">${m.desc}</p>
               </div>
               <div class="flex items-center justify-between text-xs font-semibold text-primary mt-4 pt-3 border-t border-gray-100">
                 <span>${m.done ? m.ctaDone : m.ctaNew}</span>
-                <span class="group-hover:translate-x-0.5 transition-transform">${IC.arrow}</span>
+                <span class="transform group-hover:translate-x-1.5 transition-transform duration-200">${IC.arrow}</span>
               </div>
             </a>
           `).join('')}
@@ -348,16 +345,44 @@ export function init() {
     });
   }
 
-  // Shuffle kutipan
+  // Shuffle kutipan dengan smooth cross-fade & rotate
   if (btnShuffle) {
+    let isShuffling = false;
     btnShuffle.addEventListener('click', () => {
-      activeQuote = getRandomQuote();
+      if (isShuffling) return;
+      isShuffling = true;
+
+      const qIcon    = document.getElementById('btn-shuffle-icon');
       const qText    = document.getElementById('quote-text');
       const qTokoh   = document.getElementById('quote-tokoh');
       const qTantang = document.getElementById('quote-tantangan');
-      if (qText)    qText.textContent    = `"${activeQuote.teks}"`;
-      if (qTokoh)   qTokoh.textContent   = `— ${activeQuote.tokoh}`;
-      if (qTantang) qTantang.textContent = activeQuote.tantangan;
+
+      // Putar icon 360 derajat
+      if (qIcon) {
+        qIcon.classList.add('rotate-180');
+      }
+
+      // Fade out teks
+      if (qText)    qText.classList.add('opacity-0', 'translate-y-1');
+      if (qTokoh)   qTokoh.classList.add('opacity-0');
+      if (qTantang) qTantang.classList.add('opacity-0');
+
+      setTimeout(() => {
+        activeQuote = getRandomQuote();
+        if (qText)    qText.textContent    = `"${activeQuote.teks}"`;
+        if (qTokoh)   qTokoh.textContent   = `— ${activeQuote.tokoh}`;
+        if (qTantang) qTantang.textContent = activeQuote.tantangan;
+
+        // Fade in kembali teks
+        if (qText)    qText.classList.remove('opacity-0', 'translate-y-1');
+        if (qTokoh)   qTokoh.classList.remove('opacity-0');
+        if (qTantang) qTantang.classList.remove('opacity-0');
+
+        setTimeout(() => {
+          if (qIcon) qIcon.classList.remove('rotate-180');
+          isShuffling = false;
+        }, 300);
+      }, 200);
     });
   }
 }

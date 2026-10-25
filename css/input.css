@@ -42,7 +42,37 @@
   }
 
   .page-enter {
-    animation: fadeInSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Shimmer effect for CTA button */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(
+      60deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(25deg);
+    animation: shimmerEffect 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Ambient breathing aura */
+  .hero-aura-1 {
+    animation: heroFloat 8s ease-in-out infinite alternate;
+  }
+  .hero-aura-2 {
+    animation: heroFloat 11s ease-in-out infinite alternate-reverse;
   }
 }
 
@@ -54,6 +84,30 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    left: -70%;
+  }
+  25%, 100% {
+    left: 170%;
+  }
+}
+
+@keyframes heroFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate(15px, -10px) scale(1.08);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-10px, 15px) scale(0.95);
+    opacity: 0.2;
   }
 }
 
