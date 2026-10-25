@@ -3,25 +3,23 @@
  * Mustamin (Amin) - PTIK UNM
  */
 
-import { getStorage, STORAGE_KEYS, calculateProgress } from './utils.js';
+import { getStorage, STORAGE_KEYS } from './utils.js';
+
 import { initRouter, navigateTo } from './router.js';
 
 export const AppState = {
   namaSiswa: getStorage(STORAGE_KEYS.NAMA, null),
-  progress: calculateProgress(),
 };
+
 
 /**
  * Update info profil siswa di header
  */
 export function updateHeaderUserBadge() {
-  const userBadgeEl = document.getElementById('user-header-badge');
+  const userBadgeEl    = document.getElementById('user-header-badge');
   const userGreetingEl = document.getElementById('user-header-greeting');
-  const progressBadgeEl = document.getElementById('header-progress-text');
-  const progressBarEl = document.getElementById('header-progress-bar');
 
   const nama = getStorage(STORAGE_KEYS.NAMA, null);
-  const progress = calculateProgress();
 
   if (userBadgeEl) {
     if (nama) {
@@ -32,14 +30,8 @@ export function updateHeaderUserBadge() {
       userBadgeEl.classList.add('hidden');
     }
   }
-
-  if (progressBadgeEl) {
-    progressBadgeEl.textContent = `${progress}%`;
-  }
-  if (progressBarEl) {
-    progressBarEl.style.width = `${progress}%`;
-  }
 }
+
 
 /**
  * Inisialisasi Shell App
