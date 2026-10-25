@@ -44,7 +44,7 @@ graph TD
 | # | Issue | Label | Prioritas | Depends On | Mapping PRD | Status |
 |---|-------|-------|-----------|------------|-------------|--------|
 | 1 | [Setup Proyek & Struktur Dasar](issue1.md) | `setup` `infrastructure` | 🔴 Critical | — | NFR 1-3, FR-02 | ✅ Selesai |
-| 2 | [Routing SPA Client-Side](issue2.md) | `core` `routing` | 🔴 Critical | #1 | FR-02, Arsitektur | ⬜ |
+| 2 | [Routing SPA Client-Side](issue2.md) | `core` `routing` | 🔴 Critical | #1 | FR-02, Arsitektur | ✅ Selesai |
 | 3 | [Beranda: Nama, Sapaan & Progress Bar](issue3.md) | `feature` `beranda` | 🟠 High | #1, #2 | FR-01, FR-03 | ⬜ |
 | 4 | [Modul 1: Video & Infografik Sishankamnas](issue4.md) | `feature` `modul1` | 🟠 High | #1, #2 | FR-04, FR-05 | ⬜ |
 | 5 | [Modul 1: Form Studi Kasus Nirmiliter](issue5.md) | `feature` `modul1` `form` | 🟠 High | #4 | FR-06 | ⬜ |

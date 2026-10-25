@@ -4,10 +4,9 @@
  */
 
 import { getStorage, STORAGE_KEYS, calculateProgress } from './utils.js';
-import { updateActiveNav } from './components/navbar.js';
+import { initRouter, navigateTo } from './router.js';
 
 export const AppState = {
-  currentRoute: window.location.hash || '#/',
   namaSiswa: getStorage(STORAGE_KEYS.NAMA, null),
   progress: calculateProgress(),
 };
@@ -47,22 +46,20 @@ export function updateHeaderUserBadge() {
  */
 function initApp() {
   console.log('🇮🇩 SiBELA - Sistem Interaktif Bela Negara loaded.');
-  
+
   // Set default hash jika kosong
   if (!window.location.hash) {
     window.location.hash = '#/';
   }
 
-  // Update header & nav active state
+  // Update header info
   updateHeaderUserBadge();
-  updateActiveNav(window.location.hash);
 
-  // Listen perubahan hash
-  window.addEventListener('hashchange', () => {
-    AppState.currentRoute = window.location.hash;
-    updateActiveNav(window.location.hash);
-  });
+  // Inisialisasi router SPA
+  initRouter();
 }
 
 // Jalankan saat DOM siap
 document.addEventListener('DOMContentLoaded', initApp);
+
+export { navigateTo };

@@ -12,8 +12,8 @@ Membangun sistem routing berbasis hash (`#/beranda`, `#/modul1`, `#/modul2`, dst
 - Navigasi bar menandai halaman yang sedang aktif (active state).
 
 ## 📝 Acceptance Criteria
-- [ ] Router client-side menggunakan `hashchange` event atau custom router.
-- [ ] Daftar rute yang terdaftar:
+- [x] Router client-side menggunakan `hashchange` event atau custom router.
+- [x] Daftar rute yang terdaftar:
   | Hash Route        | Halaman               |
   |-------------------|-----------------------|
   | `#/`              | Beranda               |
@@ -22,10 +22,10 @@ Membangun sistem routing berbasis hash (`#/beranda`, `#/modul1`, `#/modul2`, dst
   | `#/kuis`          | Kuis Evaluasi         |
   | `#/mindmap`       | Mind Map Digital      |
   | `#/portal-guru`   | Portal Guru           |
-- [ ] Setiap rute memuat konten dinamis ke area `<main>` tanpa reload.
-- [ ] Navigasi bar (desktop header / mobile bottom nav) menandai item aktif.
-- [ ] Rute tidak valid menampilkan halaman 404 / redirect ke Beranda.
-- [ ] Transisi antar halaman memiliki animasi fade-in/slide minimal.
+- [x] Setiap rute memuat konten dinamis ke area `<main>` tanpa reload.
+- [x] Navigasi bar (desktop header / mobile bottom nav) menandai item aktif.
+- [x] Rute tidak valid menampilkan halaman 404 / redirect ke Beranda.
+- [x] Transisi antar halaman memiliki animasi fade-in/slide minimal.
 
 ## 🔗 Referensi PRD
 - **FR-02:** Navigasi utama.
