@@ -54,18 +54,18 @@ export function render() {
 
       <!-- ===== HERO ===== -->
       <section>
-        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 py-8 sm:px-10 sm:py-10 border border-emerald-800/40 shadow-soft">
+        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 pt-8 pb-8 sm:px-10 sm:pt-10 sm:pb-0 border border-emerald-800/40 shadow-soft">
           <!-- Subtle Ambient Aura Elements -->
           <div class="hero-aura-1 absolute -top-24 -right-20 w-96 h-96 rounded-full bg-primary/40 blur-3xl pointer-events-none"></div>
           <div class="hero-aura-2 absolute -bottom-24 -left-20 w-80 h-80 rounded-full bg-accent/20 blur-3xl pointer-events-none"></div>
 
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-            <div class="max-w-xl lg:max-w-2xl">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
+            <div class="max-w-xl lg:max-w-2xl sm:pb-10">
               <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
                 ${namaSiswa
                   ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
                   : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
-              </h1>
+              </h1>    
 
               <div class="flex items-center gap-2 mb-6">
                 <button type="button" id="btn-open-modal-nama"
@@ -98,13 +98,11 @@ export function render() {
               </div>
             </div>
 
-            <!-- Ilustrasi Tokoh Proklamator Kanan -->
-            <div class="hidden md:flex justify-center lg:justify-end items-center flex-shrink-0 self-center">
-              <div class="relative group">
-                <img src="assets/images/proklamator.png" alt="Dwi-Tunggal Proklamator Indonesia - Soekarno & Hatta"
-                     class="w-60 sm:w-64 lg:w-72 h-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]
-                            transform group-hover:scale-105 transition-transform duration-300 pointer-events-none">
-              </div>
+            <!-- Ilustrasi Tokoh Proklamator Kanan (Menyentuh ambang bawah hero) -->
+            <div class="hidden md:flex justify-end items-end flex-shrink-0 self-end -mr-2 sm:-mr-4 lg:-mr-6">
+              <img src="assets/images/proklamator.png" alt="Dwi-Tunggal Proklamator Indonesia - Soekarno & Hatta"
+                   class="w-72 sm:w-80 lg:w-96 xl:w-[420px] h-auto object-contain object-bottom drop-shadow-[0_16px_28px_rgba(0,0,0,0.4)]
+                          hover:scale-[1.02] transition-transform duration-300 pointer-events-none block -mb-0.5">
             </div>
 
           </div>
