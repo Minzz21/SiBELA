@@ -24,11 +24,11 @@
   <!-- ================= TOP HEADER (DESKTOP & TABLET) ================= -->
   <header class="sticky top-0 z-40 bg-secondary text-white shadow-soft border-b border-emerald-900/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
+      <div class="flex items-center justify-between h-16 sm:h-20 gap-3">
         
         <!-- Logo & Brand Info -->
-        <a href="#/" class="flex items-center gap-3 group transition-transform active:scale-95" id="brand-logo-link">
-          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-primary-light to-primary border-2 border-accent/60 flex items-center justify-center shadow-md p-1 group-hover:border-accent transition-all">
+        <a href="#/" class="flex items-center gap-2.5 sm:gap-3 group transition-transform active:scale-95 flex-shrink-0" id="brand-logo-link">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-primary-light to-primary border-2 border-accent/60 flex items-center justify-center shadow-md p-1 group-hover:border-accent transition-all flex-shrink-0">
             <svg class="w-full h-full text-accent" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M32 4L10 12V28C10 44 19.5 56 32 60C44.5 56 54 44 54 28V12L32 4Z" fill="#0F6B4F" stroke="#E3A92B" stroke-width="3"/>
               <path d="M32 10L16 16V28C16 40 23 49 32 53C41 49 48 40 48 28V16L32 10Z" fill="#0A4A37"/>
@@ -38,62 +38,62 @@
             </svg>
           </div>
           <div class="flex flex-col">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 sm:gap-2">
               <span class="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center">
                 Si<span class="text-accent">BELA</span>
               </span>
-              <span class="hidden md:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-accent/20 text-accent border border-accent/30">
+              <span class="hidden sm:inline-block px-1.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-accent/20 text-accent border border-accent/30">
                 Kelas X
               </span>
             </div>
-            <span class="text-[11px] sm:text-xs text-emerald-200/80 font-medium tracking-wide line-clamp-1">
-              Sistem Interaktif Bela Negara • MA Palattae
+            <span class="text-[10px] sm:text-[11px] text-emerald-200/80 font-medium tracking-wide hidden sm:block whitespace-nowrap">
+              Pendidikan Pancasila • MA Palattae
             </span>
           </div>
         </a>
 
         <!-- Desktop Navigation Items -->
-        <nav class="hidden lg:flex items-center gap-1.5" aria-label="Navigasi Utama Desktop">
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-1.5 flex-shrink-0" aria-label="Navigasi Utama Desktop">
           <a href="#/" class="nav-link active" id="nav-beranda">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-            <span>Beranda</span>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span class="whitespace-nowrap">Beranda</span>
           </a>
           <a href="#/modul1" class="nav-link" id="nav-modul1">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span>Modul 1</span>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span class="whitespace-nowrap">Modul 1</span>
           </a>
           <a href="#/modul2" class="nav-link" id="nav-modul2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span>Modul 2</span>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="whitespace-nowrap">Modul 2</span>
           </a>
           <a href="#/kuis" class="nav-link" id="nav-kuis">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-            <span>Kuis Evaluasi</span>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            <span class="whitespace-nowrap">Kuis Evaluasi</span>
           </a>
           <a href="#/mindmap" class="nav-link" id="nav-mindmap">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM9 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2zM9 10h6M12 10v4"/></svg>
-            <span>Mind Map</span>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM9 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2zM9 10h6M12 10v4"/></svg>
+            <span class="whitespace-nowrap">Mind Map</span>
           </a>
           
-          <div class="h-6 w-px bg-white/20 mx-1"></div>
+          <div class="h-5 w-px bg-white/20 mx-1"></div>
 
-          <a href="#/portal-guru" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-accent text-secondary hover:bg-accent-hover transition-colors shadow-sm" id="nav-guru">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            <span>Portal Guru</span>
+          <a href="#/portal-guru" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-accent text-secondary hover:bg-accent-hover transition-colors shadow-sm whitespace-nowrap flex-shrink-0" id="nav-guru">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            <span class="whitespace-nowrap">Portal Guru</span>
           </a>
         </nav>
 
         <!-- Right User / Progress Chip (Desktop & Mobile) -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
           <!-- Student Name Badge (Hidden if not set) -->
-          <div id="user-header-badge" class="hidden items-center gap-2 px-3 py-1.5 rounded-full bg-primary/60 border border-primary-light/50 text-xs font-medium text-emerald-100">
+          <div id="user-header-badge" class="hidden items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-primary/70 border border-primary-light/50 text-xs font-semibold text-emerald-100 hover:text-white hover:bg-primary transition-all whitespace-nowrap flex-shrink-0" title="Klik untuk mengubah nama panggilan">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-white font-semibold" id="user-header-greeting">Siswa</span>
+            <span class="text-white font-bold" id="user-header-greeting">Siswa</span>
           </div>
 
           <!-- Progress Mini Bar -->
-          <div class="flex items-center gap-2 bg-emerald-950/70 border border-emerald-800/80 px-3 py-1.5 rounded-full" title="Progress Belajar">
-            <div class="w-14 sm:w-20 bg-emerald-900/80 h-2 rounded-full overflow-hidden border border-emerald-700/50">
+          <div class="flex items-center gap-1.5 sm:gap-2 bg-emerald-950/80 border border-emerald-800/80 px-2.5 sm:px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0" title="Progress Belajar">
+            <div class="w-12 sm:w-16 bg-emerald-900 h-2 rounded-full overflow-hidden border border-emerald-700/50">
               <div id="header-progress-bar" class="bg-gradient-to-r from-accent to-amber-300 h-full w-0 transition-all duration-500 rounded-full"></div>
             </div>
             <span id="header-progress-text" class="text-[11px] font-bold text-accent">0%</span>
