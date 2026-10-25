@@ -54,44 +54,52 @@ export function render() {
 
       <!-- ===== HERO ===== -->
       <section>
-        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 py-8 sm:px-10 sm:py-12">
-          <div class="relative z-10 max-w-2xl">
+        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 py-8 sm:px-10 sm:py-10">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
 
-            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
-              ${namaSiswa
-                ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
-                : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
-            </h1>
+            <div class="max-w-2xl">
+              <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
+                ${namaSiswa
+                  ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
+                  : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
+              </h1>
 
-            <div class="flex items-center gap-2 mb-6">
-              <button type="button" id="btn-open-modal-nama"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
-                       bg-white/10 hover:bg-white/20 text-emerald-100 hover:text-white
-                       border border-white/15 transition-all cursor-pointer">
-                ${IC.pencil}
-                <span>${namaSiswa ? 'Ubah nama panggilan' : 'Masukkan nama panggilan'}</span>
-              </button>
+              <div class="flex items-center gap-2 mb-6">
+                <button type="button" id="btn-open-modal-nama"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                         bg-white/10 hover:bg-white/20 text-emerald-100 hover:text-white
+                         border border-white/15 transition-all cursor-pointer">
+                  ${IC.pencil}
+                  <span>${namaSiswa ? 'Ubah nama panggilan' : 'Masukkan nama panggilan'}</span>
+                </button>
+              </div>
+
+              <p class="text-emerald-200 text-sm sm:text-base leading-relaxed mb-7 max-w-xl">
+                Media pembelajaran terpadu Pendidikan Pancasila Kelas X — Sishankamnas,
+                diplomasi aktif Indonesia, dan mind map bela negara.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-3">
+                <a href="#/modul1"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-secondary
+                         font-bold text-sm hover:bg-accent-hover active:scale-95 transition-all">
+                  <span>Mulai Belajar</span>
+                  ${IC.arrow}
+                </a>
+                <a href="#/kuis"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
+                         bg-white/10 hover:bg-white/20 text-white font-semibold text-sm
+                         border border-white/20 active:scale-95 transition-all">
+                  Kuis Evaluasi
+                </a>
+              </div>
             </div>
 
-            <p class="text-emerald-200 text-sm sm:text-base leading-relaxed mb-7 max-w-xl">
-              Media pembelajaran terpadu Pendidikan Pancasila Kelas X — Sishankamnas,
-              diplomasi aktif Indonesia, dan mind map bela negara.
-            </p>
-
-            <div class="flex flex-wrap items-center gap-3">
-              <a href="#/modul1"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-secondary
-                       font-bold text-sm hover:bg-accent-hover active:scale-95 transition-all">
-                <span>Mulai Belajar</span>
-                ${IC.arrow}
-              </a>
-              <a href="#/kuis"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
-                       bg-white/10 hover:bg-white/20 text-white font-semibold text-sm
-                       border border-white/20 active:scale-95 transition-all">
-                Kuis Evaluasi
-              </a>
+            <!-- Foto Hero Kanan -->
+            <div class="hidden md:flex lg:flex justify-end items-end flex-shrink-0 self-end lg:self-center -mb-8 sm:-mb-10 lg:-mb-10 lg:-mr-4">
+              <img src="assets/images/hero-presiden.png" alt="Presiden RI" class="h-64 sm:h-72 lg:h-80 w-auto object-contain object-bottom pointer-events-none drop-shadow-2xl">
             </div>
+
           </div>
         </div>
       </section>
