@@ -54,47 +54,59 @@ export function render() {
 
       <!-- ===== HERO ===== -->
       <section>
-        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 py-8 sm:px-10 sm:py-12 border border-emerald-800/40 shadow-soft">
+        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 py-8 sm:px-10 sm:py-10 border border-emerald-800/40 shadow-soft">
           <!-- Subtle Ambient Aura Elements -->
           <div class="hero-aura-1 absolute -top-24 -right-20 w-96 h-96 rounded-full bg-primary/40 blur-3xl pointer-events-none"></div>
           <div class="hero-aura-2 absolute -bottom-24 -left-20 w-80 h-80 rounded-full bg-accent/20 blur-3xl pointer-events-none"></div>
 
-          <div class="relative z-10 max-w-2xl">
-            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
-              ${namaSiswa
-                ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
-                : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
-            </h1>
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+            <div class="max-w-xl lg:max-w-2xl">
+              <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
+                ${namaSiswa
+                  ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
+                  : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
+              </h1>
 
-            <div class="flex items-center gap-2 mb-6">
-              <button type="button" id="btn-open-modal-nama"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
-                       bg-white/10 hover:bg-white/20 text-emerald-100 hover:text-white
-                       border border-white/15 transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer">
-                ${IC.pencil}
-                <span>${namaSiswa ? 'Ubah nama panggilan' : 'Masukkan nama panggilan'}</span>
-              </button>
+              <div class="flex items-center gap-2 mb-6">
+                <button type="button" id="btn-open-modal-nama"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                         bg-white/10 hover:bg-white/20 text-emerald-100 hover:text-white
+                         border border-white/15 transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer">
+                  ${IC.pencil}
+                  <span>${namaSiswa ? 'Ubah nama panggilan' : 'Masukkan nama panggilan'}</span>
+                </button>
+              </div>
+
+              <p class="text-emerald-200 text-sm sm:text-base leading-relaxed mb-7 max-w-lg">
+                Media pembelajaran terpadu Pendidikan Pancasila Kelas X — Sishankamnas,
+                diplomasi aktif Indonesia, dan mind map bela negara.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-3">
+                <a href="#/modul1"
+                  class="btn-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-secondary
+                         font-bold text-sm hover:bg-accent-hover hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
+                  <span>Mulai Belajar</span>
+                  <span class="transition-transform duration-200 group-hover:translate-x-1">${IC.arrow}</span>
+                </a>
+                <a href="#/kuis"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
+                         bg-white/10 hover:bg-white/20 text-white font-semibold text-sm
+                         border border-white/20 hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
+                  Kuis Evaluasi
+                </a>
+              </div>
             </div>
 
-            <p class="text-emerald-200 text-sm sm:text-base leading-relaxed mb-7 max-w-xl">
-              Media pembelajaran terpadu Pendidikan Pancasila Kelas X — Sishankamnas,
-              diplomasi aktif Indonesia, dan mind map bela negara.
-            </p>
-
-            <div class="flex flex-wrap items-center gap-3">
-              <a href="#/modul1"
-                class="btn-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-secondary
-                       font-bold text-sm hover:bg-accent-hover hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
-                <span>Mulai Belajar</span>
-                <span class="transition-transform duration-200 group-hover:translate-x-1">${IC.arrow}</span>
-              </a>
-              <a href="#/kuis"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
-                       bg-white/10 hover:bg-white/20 text-white font-semibold text-sm
-                       border border-white/20 hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
-                Kuis Evaluasi
-              </a>
+            <!-- Ilustrasi Tokoh Proklamator Kanan -->
+            <div class="hidden md:flex justify-center lg:justify-end items-center flex-shrink-0 self-center">
+              <div class="relative group">
+                <img src="assets/images/proklamator.png" alt="Dwi-Tunggal Proklamator Indonesia - Soekarno & Hatta"
+                     class="w-60 sm:w-64 lg:w-72 h-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]
+                            transform group-hover:scale-105 transition-transform duration-300 pointer-events-none">
+              </div>
             </div>
+
           </div>
         </div>
       </section>
