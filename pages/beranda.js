@@ -99,10 +99,14 @@ export function render() {
             </div>
 
             <!-- Ilustrasi Tokoh Proklamator Kanan (Menyentuh ambang bawah hero secara proporsional) -->
-            <div class="hidden md:flex justify-end items-end flex-shrink-0 self-end -mr-2 sm:-mr-4 lg:-mr-6">
-              <img src="assets/images/proklamator.png" alt="Dwi-Tunggal Proklamator Indonesia - Soekarno & Hatta"
-                   class="w-64 sm:w-72 lg:w-80 xl:w-[350px] h-auto object-contain object-bottom drop-shadow-[0_16px_28px_rgba(0,0,0,0.4)]
-                          hover:scale-[1.02] transition-transform duration-300 pointer-events-none block -mb-0.5">
+            <div class="hidden md:flex justify-end items-end flex-shrink-0 self-end -mr-2 sm:-mr-4 lg:-mr-6 relative">
+              <!-- Soft ambient backdrop aura specifically for the illustration -->
+              <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent pointer-events-none z-10"></div>
+              <img src="assets/images/proklamator@2x.png"
+                   srcset="assets/images/proklamator.png 1x, assets/images/proklamator@2x.png 2x"
+                   alt="Dwi-Tunggal Proklamator Indonesia - Soekarno & Hatta"
+                   class="w-64 sm:w-72 lg:w-80 xl:w-[350px] max-w-full h-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(0,0,0,0.45)]
+                          hover:scale-[1.02] transition-transform duration-300 pointer-events-none block -mb-0.5 relative z-0">
             </div>
 
           </div>
