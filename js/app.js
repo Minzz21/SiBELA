@@ -55,6 +55,22 @@ function initApp() {
   // Update header info
   updateHeaderUserBadge();
 
+  // Click handler pada header user badge untuk ubah nama
+  const userBadgeEl = document.getElementById('user-header-badge');
+  if (userBadgeEl) {
+    userBadgeEl.style.cursor = 'pointer';
+    userBadgeEl.title = 'Klik untuk mengubah nama panggilan';
+    userBadgeEl.addEventListener('click', () => {
+      if (window.location.hash !== '#/' && window.location.hash !== '#/beranda') {
+        window.location.hash = '#/';
+      }
+      setTimeout(() => {
+        const btn = document.getElementById('btn-open-modal-nama');
+        if (btn) btn.click();
+      }, 120);
+    });
+  }
+
   // Inisialisasi router SPA
   initRouter();
 }

@@ -55,16 +55,32 @@ export function removeStorage(key) {
 }
 
 /**
- * Menghitung persentase progress belajar siswa (0 - 100)
+ * Mengambil data status penyelesaian tiap modul
  */
-export function calculateProgress() {
-  const progress = getStorage(STORAGE_KEYS.PROGRESS, {
+export function getProgressData() {
+  return getStorage(STORAGE_KEYS.PROGRESS, {
     modul1: false,
     modul2: false,
     kuis: false,
     mindmap: false,
   });
+}
 
+/**
+ * Menyimpan status selesai pada modul tertentu
+ */
+export function setProgressStep(stepKey, isDone = true) {
+  const current = getProgressData();
+  current[stepKey] = Boolean(isDone);
+  setStorage(STORAGE_KEYS.PROGRESS, current);
+  return calculateProgress();
+}
+
+/**
+ * Menghitung persentase progress belajar siswa (0 - 100)
+ */
+export function calculateProgress() {
+  const progress = getProgressData();
   const totalSteps = 4;
   const completedSteps = Object.values(progress).filter(Boolean).length;
   return Math.round((completedSteps / totalSteps) * 100);

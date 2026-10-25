@@ -12,23 +12,23 @@ Membangun halaman Beranda sebagai landing page utama siswa. Halaman ini menampil
 - Navigasi ke modul-modul lain mudah diakses dari Beranda.
 
 ## 📝 Acceptance Criteria
-- [ ] **Input Nama Panggilan:**
+- [x] **Input Nama Panggilan:**
   - Jika `localStorage` belum memiliki nama → tampilkan modal/overlay input nama dengan animasi.
   - Nama disimpan di `localStorage` key `sibela_nama`.
   - Jika sudah ada nama → langsung tampilkan sapaan: *"Halo, [Nama]! Siap belajar hari ini? 🇮🇩"*
   - Tombol "Ganti Nama" tersedia di profil kecil.
-- [ ] **Progress Bar Dinamis:**
+- [x] **Progress Bar Dinamis:**
   - Menampilkan persentase penyelesaian dari seluruh modul (Modul 1, Modul 2, Kuis, Mind Map).
   - Dihitung dari `localStorage` flags: `modul1_done`, `modul2_done`, `kuis_done`, `mindmap_done`.
   - Animasi progress bar saat halaman dimuat.
-- [ ] **Kartu Modul / Menu Utama:**
+- [x] **Kartu Modul / Menu Utama:**
   - 4 kartu navigasi visual menuju: Modul 1, Modul 2, Kuis, Mind Map.
   - Setiap kartu menampilkan ikon, judul, deskripsi singkat, dan badge status (✅ Selesai / 🔓 Belum).
   - Hover/tap effect pada kartu.
-- [ ] **Kartu Tantangan Harian (Motivasi):**
+- [x] **Kartu Tantangan Harian (Motivasi):**
   - Menampilkan kutipan inspiratif tentang bela negara secara acak dari array statis.
   - Contoh: *"Bela negara bukan hanya tugas TNI, tapi tugas seluruh rakyat Indonesia."*
-- [ ] **UI/UX:**
+- [x] **UI/UX:**
   - Mobile-first layout.
   - Warna sesuai Design Token (Emerald, Gold, Cream).
   - Animasi entrance untuk elemen-elemen utama.
