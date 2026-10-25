@@ -54,30 +54,30 @@ export function render() {
 
       <!-- ===== HERO ===== -->
       <section>
-        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 pt-7 pb-6 sm:px-8 lg:px-10 sm:pt-8 sm:pb-0 border border-emerald-800/40 shadow-soft">
+        <div class="relative overflow-hidden rounded-2xl bg-secondary text-white px-6 pt-8 pb-8 sm:px-10 sm:pt-10 sm:pb-0 border border-emerald-800/40 shadow-soft">
           <!-- Subtle Ambient Aura Elements -->
           <div class="hero-aura-1 absolute -top-24 -right-20 w-96 h-96 rounded-full bg-primary/40 blur-3xl pointer-events-none"></div>
           <div class="hero-aura-2 absolute -bottom-24 -left-20 w-80 h-80 rounded-full bg-accent/20 blur-3xl pointer-events-none"></div>
 
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
-            <div class="max-w-xl lg:max-w-2xl sm:pb-7">
-              <div class="flex flex-wrap items-center gap-2 mb-2">
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-snug text-white" id="beranda-greeting">
-                  ${namaSiswa
-                    ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
-                    : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
-                </h1>    
+            <div class="max-w-xl lg:max-w-2xl sm:pb-10">
+              <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white mb-3" id="beranda-greeting">
+                ${namaSiswa
+                  ? `Halo, <span class="text-accent">${namaSiswa}</span>! Siap belajar hari ini?`
+                  : `Sistem Interaktif <span class="text-accent">Bela Negara</span>`}
+              </h1>    
+
+              <div class="flex items-center gap-2 mb-6">
                 <button type="button" id="btn-open-modal-nama"
-                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
                          bg-white/10 hover:bg-white/20 text-emerald-100 hover:text-white
-                         border border-white/15 transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer"
-                  title="Ubah nama panggilan">
+                         border border-white/15 transition-all duration-200 hover:scale-[1.02] active:scale-95 cursor-pointer">
                   ${IC.pencil}
-                  <span>${namaSiswa ? 'Ubah nama' : 'Masukkan nama'}</span>
+                  <span>${namaSiswa ? 'Ubah nama panggilan' : 'Masukkan nama panggilan'}</span>
                 </button>
               </div>
 
-              <p class="text-emerald-200/90 text-xs sm:text-sm leading-relaxed mb-5 max-w-lg">
+              <p class="text-emerald-200 text-sm sm:text-base leading-relaxed mb-7 max-w-lg">
                 Media pembelajaran terpadu Pendidikan Pancasila Kelas X — Sishankamnas,
                 diplomasi aktif Indonesia, dan mind map bela negara.
               </p>
@@ -85,28 +85,26 @@ export function render() {
               <div class="flex flex-wrap items-center gap-3">
                 <a href="#/modul1"
                   class="btn-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-secondary
-                         font-bold text-xs sm:text-sm hover:bg-accent-hover hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
+                         font-bold text-sm hover:bg-accent-hover hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
                   <span>Mulai Belajar</span>
                   <span class="transition-transform duration-200 group-hover:translate-x-1">${IC.arrow}</span>
                 </a>
                 <a href="#/kuis"
-                  class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl
-                         bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl
+                         bg-white/10 hover:bg-white/20 text-white font-semibold text-sm
                          border border-white/20 hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
                   Kuis Evaluasi
                 </a>
               </div>
             </div>
 
-            <!-- Ilustrasi Tokoh Proklamator Kanan (Menyentuh ambang bawah hero secara proporsional) -->
-            <div class="hidden md:flex justify-end items-end flex-shrink-0 self-end -mr-2 sm:-mr-4 lg:-mr-6 relative">
-              <!-- Soft ambient backdrop aura specifically for the illustration -->
-              <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent pointer-events-none z-10"></div>
+            <!-- Ilustrasi Tokoh Proklamator Kanan (Menyentuh ambang bawah hero) -->
+            <div class="hidden md:flex justify-end items-end flex-shrink-0 self-end -mr-2 sm:-mr-4 lg:-mr-6">
               <img src="assets/images/proklamator@2x.png"
                    srcset="assets/images/proklamator.png 1x, assets/images/proklamator@2x.png 2x"
                    alt="Dwi-Tunggal Proklamator Indonesia - Soekarno & Hatta"
-                   class="w-64 sm:w-72 lg:w-80 xl:w-[350px] max-w-full h-auto object-contain object-bottom drop-shadow-[0_16px_32px_rgba(0,0,0,0.45)]
-                          hover:scale-[1.02] transition-transform duration-300 pointer-events-none block -mb-0.5 relative z-0">
+                   class="w-72 sm:w-80 lg:w-96 xl:w-[420px] h-auto object-contain object-bottom drop-shadow-[0_16px_28px_rgba(0,0,0,0.4)]
+                          hover:scale-[1.02] transition-transform duration-300 pointer-events-none block -mb-0.5">
             </div>
 
           </div>
