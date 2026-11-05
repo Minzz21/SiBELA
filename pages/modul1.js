@@ -115,131 +115,47 @@ export function render() {
               <span class="text-xs font-black uppercase tracking-wider text-emerald-200">Video 1: Pertahanan Semesta</span>
             </div>
 
+            <!-- YouTube Open Link Badge -->
+            <a
+              href="https://youtu.be/P9EMx1yznIc"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-600 text-white text-[11px] font-bold shadow-xs transition-all active:scale-95"
+            >
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>Buka di YouTube ↗</span>
+            </a>
           </div>
 
-          <!-- Video Container -->
-          <div class="relative rounded-2xl overflow-hidden bg-black shadow-inner group/player">
-            
-            <video
-              id="modul1-video"
-              class="w-full aspect-video bg-black cursor-pointer block"
-              preload="metadata"
-              playsinline
-            >
-              <source src="assets/videos/sishankamnas.mp4" type="video/mp4">
-              Browser Anda tidak mendukung pemutar video HTML5.
-            </video>
+          <!-- Video Container (YouTube Embed) -->
+          <div class="relative rounded-2xl overflow-hidden bg-black shadow-inner aspect-video w-full border border-emerald-900/40">
+            <iframe
+              id="modul1-youtube-frame"
+              class="w-full h-full block"
+              src="https://www.youtube-nocookie.com/embed/P9EMx1yznIc?rel=0&modestbranding=1"
+              title="Video Pembelajaran Sishankamnas - Pendidikan Pancasila"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
 
-            <!-- Big Golden Play Button in Center (Screen 2) -->
+          <!-- Video Completion Target & Mark Button -->
+          <div class="mt-3.5 flex items-center justify-between flex-wrap gap-2.5">
+            <div id="video-complete-banner" class="${isVideoWatched ? 'flex' : 'hidden'} items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600/90 text-white text-[11px] font-bold border border-emerald-400">
+              ${IC.check}
+              <span>Target Tonton Tercapai! (100%)</span>
+            </div>
+
             <button
               type="button"
-              id="video-big-play-btn"
-              class="absolute inset-0 m-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E5A024] text-[#0E4632] hover:bg-amber-400 active:scale-90 flex items-center justify-center shadow-floating border-3 border-white/90 backdrop-blur-sm transition-all duration-300 z-20 cursor-pointer group/bigbtn"
-              aria-label="Putar video"
-            >
-              <svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current translate-x-0.5 group-hover/bigbtn:scale-110 transition-transform duration-200" viewBox="0 0 24 24">
-                <path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.29-6.86a1 1 0 0 0 0-1.68L9.54 4.3a1 1 0 0 0-1.54.84z"/>
-              </svg>
-            </button>
-
-            <!-- 80% Watched Banner Overlay -->
-            <div
-              id="video-complete-banner"
-              class="${isVideoWatched ? 'flex' : 'hidden'} absolute top-3 right-3 z-20 items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600/90 backdrop-blur-md text-white text-[11px] font-bold border border-emerald-400 shadow-lg"
+              id="btn-mark-video-done"
+              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer shadow-xs active:scale-95 ${isVideoWatched ? 'bg-white/10 text-emerald-200 border border-white/20' : 'bg-[#E5A024] hover:bg-amber-400 text-gray-900'}"
             >
               ${IC.check}
-              <span>Target Tonton Tercapai! (80%)</span>
-            </div>
-
-            <!-- Custom Control Bar -->
-            <div
-              id="video-controls"
-              class="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-3 sm:px-5 py-2.5 sm:py-3.5 transition-opacity duration-300 opacity-95 group-hover/player:opacity-100 flex flex-col gap-2"
-            >
-              <!-- Progress Scrubber -->
-              <div class="relative w-full flex items-center group/scrubber cursor-pointer">
-                <input
-                  type="range"
-                  id="video-seek-bar"
-                  min="0"
-                  max="100"
-                  value="0"
-                  step="0.1"
-                  class="w-full h-1.5 group-hover/scrubber:h-2 bg-white/30 rounded-full appearance-none accent-[#E5A024] cursor-pointer transition-all"
-                />
-              </div>
-
-              <!-- Button Row -->
-              <div class="flex items-center justify-between text-white text-xs">
-                <!-- Left: Play/Pause, Replay, Time Display -->
-                <div class="flex items-center gap-2 sm:gap-3">
-                  <button
-                    type="button"
-                    id="video-play-btn"
-                    class="p-1.5 rounded-full hover:bg-white/20 active:scale-90 transition-all cursor-pointer text-[#E5A024]"
-                    title="Putar / Jeda (Spasi)"
-                  >
-                    <span id="video-play-icon">${IC.play}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    id="video-replay-btn"
-                    class="p-1.5 rounded-full hover:bg-white/20 active:scale-90 transition-all cursor-pointer text-white/80 hover:text-white"
-                    title="Ulangi 10 Detik"
-                  >
-                    ${IC.replay}
-                  </button>
-
-                  <div class="font-mono text-[10px] sm:text-xs text-emerald-100/90 whitespace-nowrap">
-                    <span id="video-current-time">00:00</span> / <span id="video-duration-time">00:00</span>
-                  </div>
-                </div>
-
-                <!-- Right: Volume, Speed, Fullscreen -->
-                <div class="flex items-center gap-2 sm:gap-3">
-                  <div class="flex items-center gap-1 group/volume">
-                    <button
-                      type="button"
-                      id="video-mute-btn"
-                      class="p-1 rounded-full hover:bg-white/20 text-white/90 hover:text-white transition-all cursor-pointer"
-                      title="Bisu / Nyalakan Suara"
-                    >
-                      <span id="video-volume-icon">${IC.volumeUp}</span>
-                    </button>
-                    <input
-                      type="range"
-                      id="video-volume-slider"
-                      min="0"
-                      max="1"
-                      step="0.05"
-                      value="1"
-                      class="w-12 sm:w-16 h-1 bg-white/30 rounded-full appearance-none accent-[#E5A024] cursor-pointer"
-                    />
-                  </div>
-
-                  <button
-                    type="button"
-                    id="video-speed-btn"
-                    class="px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/20 text-[11px] font-bold text-[#E5A024] transition-all cursor-pointer"
-                    title="Kecepatan Video"
-                  >
-                    <span id="video-speed-label">1.0x</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    id="video-fullscreen-btn"
-                    class="p-1.5 rounded-full hover:bg-white/20 active:scale-90 transition-all cursor-pointer text-white"
-                    title="Layar Penuh"
-                  >
-                    ${IC.fullscreen}
-                  </button>
-                </div>
-              </div>
-
-            </div>
-
+              <span id="label-mark-video-done">${isVideoWatched ? 'Sudah Ditonton' : 'Tandai Telah Menonton'}</span>
+            </button>
           </div>
 
           <!-- Video Takeaway Note -->
@@ -1003,147 +919,34 @@ export function init() {
     });
   });
 
-  // ================= 2. VIDEO PLAYER CONTROLLER =================
-  const video          = document.getElementById('modul1-video');
-  const bigPlayBtn     = document.getElementById('video-big-play-btn');
-  const playBtn        = document.getElementById('video-play-btn');
-  const playIcon       = document.getElementById('video-play-icon');
-  const replayBtn      = document.getElementById('video-replay-btn');
-  const seekBar        = document.getElementById('video-seek-bar');
-  const currentTimeEl  = document.getElementById('video-current-time');
-  const durationTimeEl = document.getElementById('video-duration-time');
-  const volumeSlider   = document.getElementById('video-volume-slider');
-  const muteBtn        = document.getElementById('video-mute-btn');
-  const volumeIcon     = document.getElementById('video-volume-icon');
-  const speedBtn       = document.getElementById('video-speed-btn');
-  const speedLabel     = document.getElementById('video-speed-label');
-  const fullscreenBtn  = document.getElementById('video-fullscreen-btn');
+  // ================= 2. VIDEO WATCHED CONTROLLER (YOUTUBE) =================
+  const btnMarkDone    = document.getElementById('btn-mark-video-done');
+  const labelMarkDone  = document.getElementById('label-mark-video-done');
   const completeBanner = document.getElementById('video-complete-banner');
 
-  if (video) {
-    const formatTime = (seconds) => {
-      if (isNaN(seconds) || seconds < 0) return '00:00';
-      const m = Math.floor(seconds / 60);
-      const s = Math.floor(seconds % 60);
-      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-    };
+  if (btnMarkDone) {
+    btnMarkDone.addEventListener('click', () => {
+      const isWatched = getStorage(STORAGE_KEY_VIDEO_WATCHED, false);
+      const nextWatched = !isWatched;
+      setStorage(STORAGE_KEY_VIDEO_WATCHED, nextWatched);
 
-    const togglePlay = () => {
-      if (video.paused || video.ended) {
-        video.play().catch(err => console.log('Autoplay blocked:', err));
-      } else {
-        video.pause();
-      }
-    };
-
-    if (bigPlayBtn) bigPlayBtn.addEventListener('click', togglePlay);
-    if (playBtn)    playBtn.addEventListener('click', togglePlay);
-    video.addEventListener('click', togglePlay);
-
-    video.addEventListener('play', () => {
-      if (bigPlayBtn) bigPlayBtn.classList.add('hidden');
-      if (playIcon) playIcon.innerHTML = IC.pause;
-    });
-
-    video.addEventListener('pause', () => {
-      if (bigPlayBtn) bigPlayBtn.classList.remove('hidden');
-      if (playIcon) playIcon.innerHTML = IC.play;
-    });
-
-    video.addEventListener('ended', () => {
-      if (bigPlayBtn) bigPlayBtn.classList.remove('hidden');
-      if (playIcon) playIcon.innerHTML = IC.play;
-    });
-
-    if (replayBtn) {
-      replayBtn.addEventListener('click', () => {
-        video.currentTime = Math.max(0, video.currentTime - 10);
-      });
-    }
-
-    video.addEventListener('loadedmetadata', () => {
-      if (durationTimeEl) durationTimeEl.textContent = formatTime(video.duration);
-      if (seekBar) seekBar.max = video.duration || 100;
-    });
-
-    let hasMarkedWatched = getStorage(STORAGE_KEY_VIDEO_WATCHED, false);
-
-    const checkVideoProgress = () => {
-      if (!video.duration) return;
-
-      const currentPercent = (video.currentTime / video.duration) * 100;
-      if (seekBar) seekBar.value = video.currentTime;
-      if (currentTimeEl) currentTimeEl.textContent = formatTime(video.currentTime);
-
-      if (!hasMarkedWatched && (currentPercent >= 80 || video.ended)) {
-        hasMarkedWatched = true;
-        setStorage(STORAGE_KEY_VIDEO_WATCHED, true);
-        if (completeBanner) completeBanner.classList.remove('hidden');
+      if (nextWatched) {
+        btnMarkDone.className = 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer shadow-xs active:scale-95 bg-white/10 text-emerald-200 border border-white/20';
+        if (labelMarkDone) labelMarkDone.textContent = 'Sudah Ditonton';
+        if (completeBanner) {
+          completeBanner.classList.remove('hidden');
+          completeBanner.classList.add('flex');
+        }
         showToast('Bagus! Video Sishankamnas telah tuntas ditonton.', 'success');
-      }
-    };
-
-    video.addEventListener('timeupdate', checkVideoProgress);
-
-    if (seekBar) {
-      seekBar.addEventListener('input', () => {
-        video.currentTime = parseFloat(seekBar.value);
-      });
-    }
-
-    if (volumeSlider) {
-      volumeSlider.addEventListener('input', (e) => {
-        video.volume = parseFloat(e.target.value);
-        video.muted = video.volume === 0;
-        updateVolumeIcon();
-      });
-    }
-
-    const updateVolumeIcon = () => {
-      if (!volumeIcon) return;
-      if (video.muted || video.volume === 0) {
-        volumeIcon.innerHTML = IC.volumeMute;
       } else {
-        volumeIcon.innerHTML = IC.volumeUp;
+        btnMarkDone.className = 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer shadow-xs active:scale-95 bg-[#E5A024] hover:bg-amber-400 text-gray-900';
+        if (labelMarkDone) labelMarkDone.textContent = 'Tandai Telah Menonton';
+        if (completeBanner) {
+          completeBanner.classList.add('hidden');
+          completeBanner.classList.remove('flex');
+        }
       }
-    };
-
-    if (muteBtn) {
-      muteBtn.addEventListener('click', () => {
-        video.muted = !video.muted;
-        if (volumeSlider) {
-          volumeSlider.value = video.muted ? 0 : video.volume || 1;
-        }
-        updateVolumeIcon();
-      });
-    }
-
-    const speeds = [1.0, 1.25, 1.5, 0.75];
-    let speedIdx = 0;
-    if (speedBtn) {
-      speedBtn.addEventListener('click', () => {
-        speedIdx = (speedIdx + 1) % speeds.length;
-        const newSpeed = speeds[speedIdx];
-        video.playbackRate = newSpeed;
-        if (speedLabel) speedLabel.textContent = `${newSpeed.toFixed(2).replace(/\.00$/, '.0')}x`;
-        showToast(`Kecepatan video: ${newSpeed}x`, 'info');
-      });
-    }
-
-    if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', () => {
-        const container = video.closest('.group\\/player') || video;
-        if (!document.fullscreenElement) {
-          if (container.requestFullscreen) {
-            container.requestFullscreen();
-          } else if (video.webkitEnterFullscreen) {
-            video.webkitEnterFullscreen();
-          }
-        } else {
-          if (document.exitFullscreen) document.exitFullscreen();
-        }
-      });
-    }
+    });
   }
 
   // ================= 3. ACCORDION EXPANDER FOR 3 KOMPONEN =================
