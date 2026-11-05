@@ -3,148 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>SiBELA — Sistem Interaktif Bela Negara | MA Palattae</title>
+  <title>SiBELA — Sistem Belajar Bela Negara | MA Palattae</title>
   <meta name="description" content="Media Pembelajaran Interaktif Pendidikan Pancasila Kelas X MA Palattae. Topik: Sishankamnas & Peran Indonesia di Dunia.">
   <meta name="author" content="Mustamin (Amin) - PTIK UNM">
-  <meta name="theme-color" content="#0A4A37">
+  <meta name="theme-color" content="#0E4632">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/favicon.png?v=2">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2">
-  <link rel="apple-touch-icon" href="assets/favicon.png?v=2">
+  <link rel="icon" type="image/png" href="assets/images/newlogo.png?v=3">
+  <link rel="apple-touch-icon" href="assets/images/newlogo.png?v=3">
 
   <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind Output CSS -->
   <link rel="stylesheet" href="css/output.css">
+
+  <!-- Leaflet CSS & JS for Real Interactive Geographic Maps (Issue #6) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Canvas Confetti for Interactive Celebrations (Issue #7 & #12) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
-<body class="min-h-full flex flex-col bg-cream text-gray-800 antialiased selection:bg-accent/30 selection:text-emerald-950">
+<body class="min-h-full flex flex-col bg-[#FAF7EE] text-gray-800 antialiased selection:bg-accent/30 selection:text-emerald-950 font-sans">
 
-  <!-- ================= TOP HEADER (DESKTOP & TABLET) ================= -->
-  <header class="sticky top-0 z-40 bg-secondary text-white shadow-soft border-b border-emerald-900/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20 gap-3">
-        
-        <!-- Logo & Brand Info -->
-        <a href="#/" class="flex items-center gap-2.5 sm:gap-3 group transition-transform active:scale-95 flex-shrink-0" id="brand-logo-link">
-          <img src="assets/images/logo-accent.png" alt="Logo SiBELA" class="h-9 w-auto sm:h-10 object-contain group-hover:scale-105 transition-all flex-shrink-0">
-          <div class="flex items-center">
-            <span class="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center">
-              Si<span class="text-accent">BELA</span>
-            </span>
-          </div>
-        </a>
-
-        <!-- Desktop Navigation Items -->
-        <nav class="hidden lg:flex items-center gap-1 xl:gap-1.5 flex-shrink-0" aria-label="Navigasi Utama Desktop">
-          <a href="#/" class="nav-link active" id="nav-beranda">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-            <span class="whitespace-nowrap">Beranda</span>
-          </a>
-          <a href="#/modul1" class="nav-link" id="nav-modul1">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span class="whitespace-nowrap">Modul 1</span>
-          </a>
-          <a href="#/modul2" class="nav-link" id="nav-modul2">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span class="whitespace-nowrap">Modul 2</span>
-          </a>
-          <a href="#/kuis" class="nav-link" id="nav-kuis">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-            <span class="whitespace-nowrap">Kuis Evaluasi</span>
-          </a>
-          <a href="#/mindmap" class="nav-link" id="nav-mindmap">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM9 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2zM9 10h6M12 10v4"/></svg>
-            <span class="whitespace-nowrap">Mind Map</span>
-          </a>
-          
-          <div class="h-5 w-px bg-white/20 mx-1"></div>
-
-          <a href="#/portal-guru" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-accent text-secondary hover:bg-accent-hover transition-colors shadow-sm whitespace-nowrap flex-shrink-0" id="nav-guru">
-            <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            <span class="whitespace-nowrap">Portal Guru</span>
-          </a>
-        </nav>
-
-        <!-- Right User Badge (Desktop & Mobile) -->
-        <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
-          <!-- Student Name Badge (Hidden if not set) -->
-          <div id="user-header-badge" class="hidden items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-primary/70 border border-primary-light/50 text-xs font-semibold text-emerald-100 hover:text-white hover:bg-primary transition-all whitespace-nowrap flex-shrink-0" title="Klik untuk mengubah nama panggilan">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-white font-bold" id="user-header-greeting">Siswa</span>
-          </div>
+  <!-- ================= TOP NAVBAR (DESKTOP) ================= -->
+  <header class="hidden lg:block bg-[#0E4632] border-b border-emerald-900/60 sticky top-0 z-40 text-white">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      
+      <!-- Left: Logo & Brand -->
+      <a href="#/" class="flex items-center gap-2.5 group">
+        <img src="assets/images/newlogo.png" alt="Logo SiBela" class="w-9 h-9 object-contain flex-shrink-0 group-hover:scale-105 transition-transform">
+        <div class="flex flex-col">
+          <span class="text-base font-black tracking-tight text-white leading-tight">SiBela</span>
+          <span class="text-[10px] text-emerald-200/80 leading-tight">Sistem Belajar Bela Negara</span>
         </div>
+      </a>
 
+      <!-- Center: Navigation Links -->
+      <nav class="flex items-center gap-1.5" aria-label="Navigasi Utama Desktop">
+        <a href="#/" class="desktop-nav-link px-4 py-1.5 rounded-full text-xs font-semibold transition-all" id="desktop-nav-beranda">
+          Beranda
+        </a>
+        <a href="#/modul1" class="desktop-nav-link px-4 py-1.5 rounded-full text-xs font-medium text-emerald-100 hover:text-white hover:bg-white/10 transition-all" id="desktop-nav-materi1">
+          Materi 1
+        </a>
+        <a href="#/modul2" class="desktop-nav-link px-4 py-1.5 rounded-full text-xs font-medium text-emerald-100 hover:text-white hover:bg-white/10 transition-all" id="desktop-nav-materi2">
+          Materi 2
+        </a>
+        <a href="#/kuis" class="desktop-nav-link px-4 py-1.5 rounded-full text-xs font-medium text-emerald-100 hover:text-white hover:bg-white/10 transition-all" id="desktop-nav-kuis">
+          Kuis
+        </a>
+        <a href="#/mindmap" class="desktop-nav-link px-4 py-1.5 rounded-full text-xs font-medium text-emerald-100 hover:text-white hover:bg-white/10 transition-all" id="desktop-nav-mindmap">
+          Mind Map
+        </a>
+      </nav>
+
+      <!-- Right: Portal Guru & User Name Pill -->
+      <div class="flex items-center gap-2.5">
+        <a href="#/portal-guru" class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-emerald-100 hover:text-white bg-white/10 hover:bg-white/15 border border-white/20 transition-all" id="desktop-nav-guru">
+          Portal Guru
+        </a>
+        
+        <!-- User Name Pill (Ubah Nama) -->
+        <button type="button" onclick="if(window.openModalNama) window.openModalNama()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-bold text-emerald-100 hover:text-white transition-all cursor-pointer" title="Klik untuk mengubah nama panggilan" id="desktop-btn-user">
+          <span class="w-2 h-2 rounded-full bg-accent animate-pulse flex-shrink-0"></span>
+          <span id="desktop-student-name">Siswa</span>
+        </button>
       </div>
+
     </div>
   </header>
 
   <!-- ================= MAIN VIEW CONTAINER (SPA ROOT) ================= -->
-  <main id="app-root" class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-24 lg:pb-12">
+  <main id="app-root" class="flex-grow w-full pb-16 lg:pb-0 pt-0">
     <!-- Konten halaman di-mount secara dinamis oleh js/router.js -->
   </main>
 
+  <!-- ================= OFF-CANVAS NAVIGATION DRAWER (MOBILE) ================= -->
+  <div id="drawer-overlay" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+  <aside id="nav-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-72 sm:w-80 bg-white shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between" aria-label="Menu Navigasi SiBELA">
+    
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-[#0E4632] text-white">
+      <div class="flex items-center gap-2">
+        <img src="assets/images/newlogo.png" alt="Logo" class="w-8 h-8 object-contain flex-shrink-0">
+        <div class="flex flex-col">
+          <span class="font-black text-base tracking-tight leading-tight">SiBela</span>
+          <span class="text-[9px] text-emerald-200">Sistem Belajar Bela Negara</span>
+        </div>
+      </div>
+      <button type="button" id="btn-close-drawer" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors" aria-label="Tutup Menu">
+        ✕
+      </button>
+    </div>
+
+    <!-- Drawer Profile & Nav Links -->
+    <div class="p-5 flex-grow overflow-y-auto space-y-6">
+      
+      <!-- Student Card in Drawer -->
+      <div class="bg-[#FFF8E8] p-4 rounded-2xl border border-amber-200/60 shadow-xs">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-secondary">Profil Siswa</span>
+          <button type="button" id="drawer-btn-edit-nama" class="text-[11px] font-bold text-accent hover:underline">
+            Ubah
+          </button>
+        </div>
+        <div class="font-black text-gray-900 text-sm truncate" id="drawer-student-name">
+          Siswa Bela Negara
+        </div>
+        <div class="text-[11px] text-gray-500 mt-0.5" id="drawer-student-class">
+          Kelas X • MA Palattae
+        </div>
+      </div>
+
+      <!-- Navigation Links List -->
+      <nav class="space-y-1.5" aria-label="Daftar Menu">
+        <a href="#/" class="drawer-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-emerald-50 hover:text-primary transition-colors">
+          <span class="w-7 h-7 rounded-lg bg-emerald-100 text-primary flex items-center justify-center text-sm">🏠</span>
+          <span>Beranda</span>
+        </a>
+        <a href="#/modul1" class="drawer-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-emerald-50 hover:text-primary transition-colors">
+          <span class="w-7 h-7 rounded-lg bg-emerald-100 text-primary flex items-center justify-center text-sm">🛡️</span>
+          <span>Materi 1: Sishankamnas</span>
+        </a>
+        <a href="#/modul2" class="drawer-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-emerald-50 hover:text-primary transition-colors">
+          <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center text-sm">🌐</span>
+          <span>Materi 2: Peran di Dunia</span>
+        </a>
+        <a href="#/mindmap" class="drawer-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-emerald-50 hover:text-primary transition-colors">
+          <span class="w-7 h-7 rounded-lg bg-emerald-100 text-primary flex items-center justify-center text-sm">🧠</span>
+          <span>Mind Map Konsep</span>
+        </a>
+        <a href="#/kuis" class="drawer-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-emerald-50 hover:text-primary transition-colors">
+          <span class="w-7 h-7 rounded-lg bg-red-100 text-red-800 flex items-center justify-center text-sm">📝</span>
+          <span>Kuis Bela Negara</span>
+        </a>
+        <div class="pt-2 border-t border-gray-100"></div>
+        <a href="#/portal-guru" class="drawer-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-secondary bg-emerald-50/60 border border-emerald-200/50 hover:bg-emerald-100 transition-colors">
+          <span class="w-7 h-7 rounded-lg bg-[#0E4632] text-white flex items-center justify-center text-sm">👨‍🏫</span>
+          <span>Portal Guru (Pendidik)</span>
+        </a>
+      </nav>
+
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="p-4 border-t border-gray-100 bg-gray-50/80 text-[11px] text-gray-500 text-center">
+      <div class="font-bold text-gray-800">SiBela • MA Palattae</div>
+      <div>Pendidikan Pancasila Kelas X • 2026</div>
+    </div>
+
+  </aside>
+
   <!-- ================= BOTTOM NAVIGATION BAR (MOBILE ONLY) ================= -->
-  <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-2 py-1" aria-label="Navigasi Utama Ponsel">
-    <div class="max-w-md mx-auto grid grid-cols-6 gap-0.5">
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200/80 shadow-[0_-4px_25px_rgba(0,0,0,0.06)] py-1.5 px-2" aria-label="Navigasi Utama Ponsel">
+    <div class="max-w-md mx-auto grid grid-cols-5 gap-0.5">
       
       <!-- Beranda -->
-      <a href="#/" class="nav-link-mobile active" id="mobile-nav-beranda">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        <span class="text-[10px] leading-tight">Beranda</span>
+      <a href="#/" class="nav-link-mobile group flex flex-col items-center justify-center py-0.5" id="nav-item-beranda">
+        <div class="nav-circle w-8 h-8 rounded-full bg-[#0E4632] text-white flex items-center justify-center shadow-xs transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <span class="nav-label text-[10px] font-bold text-[#0E4632] mt-0.5 leading-tight">Beranda</span>
       </a>
 
-      <!-- Modul 1 -->
-      <a href="#/modul1" class="nav-link-mobile" id="mobile-nav-modul1">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        <span class="text-[10px] leading-tight">Modul 1</span>
+      <!-- Materi 1 -->
+      <a href="#/modul1" class="nav-link-mobile group flex flex-col items-center justify-center py-0.5" id="nav-item-materi1">
+        <div class="nav-circle w-8 h-8 rounded-full border border-gray-300 text-gray-500 bg-white flex items-center justify-center group-hover:border-emerald-700 group-hover:text-emerald-800 transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+        </div>
+        <span class="nav-label text-[10px] font-medium text-gray-500 mt-0.5 leading-tight group-hover:text-emerald-800 transition-colors">Materi 1</span>
       </a>
 
-      <!-- Modul 2 -->
-      <a href="#/modul2" class="nav-link-mobile" id="mobile-nav-modul2">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span class="text-[10px] leading-tight">Modul 2</span>
+      <!-- Materi 2 -->
+      <a href="#/modul2" class="nav-link-mobile group flex flex-col items-center justify-center py-0.5" id="nav-item-materi2">
+        <div class="nav-circle w-8 h-8 rounded-full border border-gray-300 text-gray-500 bg-white flex items-center justify-center group-hover:border-emerald-700 group-hover:text-emerald-800 transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 000 18M12.5 3a17 17 0 010 18"/></svg>
+        </div>
+        <span class="nav-label text-[10px] font-medium text-gray-500 mt-0.5 leading-tight group-hover:text-emerald-800 transition-colors">Materi 2</span>
       </a>
 
       <!-- Kuis -->
-      <a href="#/kuis" class="nav-link-mobile" id="mobile-nav-kuis">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-        <span class="text-[10px] leading-tight">Kuis</span>
+      <a href="#/kuis" class="nav-link-mobile group flex flex-col items-center justify-center py-0.5" id="nav-item-kuis">
+        <div class="nav-circle w-8 h-8 rounded-full border border-gray-300 text-gray-500 bg-white flex items-center justify-center group-hover:border-emerald-700 group-hover:text-emerald-800 transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <span class="nav-label text-[10px] font-medium text-gray-500 mt-0.5 leading-tight group-hover:text-emerald-800 transition-colors">Kuis</span>
       </a>
 
       <!-- Mind Map -->
-      <a href="#/mindmap" class="nav-link-mobile" id="mobile-nav-mindmap">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM9 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2zM9 10h6M12 10v4"/></svg>
-        <span class="text-[10px] leading-tight">Mind Map</span>
-      </a>
-
-      <!-- Guru -->
-      <a href="#/portal-guru" class="nav-link-mobile" id="mobile-nav-guru">
-        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        <span class="text-[10px] leading-tight">Guru</span>
+      <a href="#/mindmap" class="nav-link-mobile group flex flex-col items-center justify-center py-0.5" id="nav-item-mindmap">
+        <div class="nav-circle w-8 h-8 rounded-full border border-gray-300 text-gray-500 bg-white flex items-center justify-center group-hover:border-emerald-700 group-hover:text-emerald-800 transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM9 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2zM9 10h6M12 10v4"/></svg>
+        </div>
+        <span class="nav-label text-[10px] font-medium text-gray-500 mt-0.5 leading-tight group-hover:text-emerald-800 transition-colors">Mind Map</span>
       </a>
 
     </div>
   </nav>
-
-  <!-- ================= FOOTER (DESKTOP) ================= -->
-  <footer class="hidden lg:block bg-secondary text-emerald-100/80 border-t border-emerald-900/60 py-6 text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <span class="font-bold text-white">SiBELA</span>
-        <span>•</span>
-        <span>Pendidikan Teknik Informatika & Komputer (PTIK) UNM</span>
-        <span>•</span>
-        <span>MA Palattae</span>
-      </div>
-      <div>
-        <span>Model Pengembangan ADDIE • 2026</span>
-      </div>
-    </div>
-  </footer>
 
   <!-- Application Entry Script (ES Module) -->
   <script type="module" src="js/app.js"></script>

@@ -37,7 +37,8 @@ Membangun halaman Modul 2 dengan Peta Geopolitik Interaktif yang menampilkan pin
   - Counter: "Kamu sudah menjelajahi 3/5 organisasi".
   - Simpan state di `localStorage`.
 
-## 🔗 Referensi PRD
+## 🔗 Referensi PRD & Materi
+- **Materi Lengkap:** [Materi Pembelajaran Modul 2](materi_modul2.md)
 - **FR-07:** Peta interaktif geopolitik dengan pin organisasi.
 - **FR-08:** Pop-up card peran Indonesia + tautan situs resmi.
 - **TP 10.D.7:** Menganalisis peran Indonesia di dunia internasional.

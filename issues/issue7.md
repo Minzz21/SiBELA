@@ -12,27 +12,28 @@ Membangun form "Tugas Laporan Singkat" sebagai bagian akhir Modul 2. Siswa mengi
 - Melatih literasi digital siswa Gen Z.
 
 ## 📝 Acceptance Criteria
-- [ ] **Form Input 3 Peran:**
+- [x] **Form Input 3 Peran:**
   - 3 pasang input field:
     - Input teks: *"Peran Indonesia ke-[n]"* (min. 30 karakter).
     - Input URL: *"Sumber resmi (URL)"* dengan validasi format URL.
   - Setiap pasangan input memiliki nomor urut dan ikon.
-- [ ] **Validasi Sumber URL:**
+- [x] **Validasi Sumber URL:**
   - Validasi format URL (harus dimulai `http://` atau `https://`).
   - Validasi domain terpercaya (opsional, sebagai rekomendasi):
     - ✅ Domain direkomendasikan: `kemlu.go.id`, `un.org`, `asean.org`, `g20.org`, `oic-oci.org`
     - ⚠️ Domain lain: tampilkan peringatan *"Pastikan ini sumber terpercaya"*.
   - Indikator visual: ✅ hijau (valid), ⚠️ kuning (peringatan), ❌ merah (invalid).
-- [ ] **Preview & Submit:**
+- [x] **Preview & Submit:**
   - Tombol "Pratinjau Laporan" menampilkan rangkuman dalam format tabel rapi.
   - Tombol "Simpan & Selesai" → simpan ke `localStorage` key `sibela_laporan_peran`.
   - Update status `modul2_done = true` di localStorage.
   - Tampilkan pesan sukses dengan animasi confetti/checkmark.
-- [ ] **State Management:**
+- [x] **State Management:**
   - Auto-populate dari localStorage jika sudah pernah diisi.
   - Tombol reset/edit tersedia.
 
-## 🔗 Referensi PRD
+## 🔗 Referensi PRD & Materi
+- **Materi Lengkap:** [Materi Pembelajaran Modul 2](materi_modul2.md)
 - **FR-09:** Form laporan 3 peran + 3 URL sumber resmi.
 - **TP 10.D.7:** Menganalisis peran Indonesia di dunia internasional.
 
