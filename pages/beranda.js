@@ -15,10 +15,10 @@ let activeQuote = quotesBelaNegara[0];
  * Render HTML Halaman Beranda
  */
 export function render() {
-  const namaSiswa       = getStorage(STORAGE_KEYS.NAMA, null);
-  const progressData    = getProgressData();
+  const namaSiswa = getStorage(STORAGE_KEYS.NAMA, null);
+  const progressData = getProgressData();
   const progressPercent = calculateProgress();
-  const completedCount  = Object.values(progressData).filter(Boolean).length;
+  const completedCount = Object.values(progressData).filter(Boolean).length;
 
   return `
     <div class="page-enter flex flex-col w-full">
@@ -433,17 +433,17 @@ export function render() {
  * Inisialisasi event listener halaman Beranda
  */
 export function init() {
-  const modalOverlay  = document.getElementById('modal-nama-overlay');
-  const modalContent  = document.getElementById('modal-nama-content');
+  const modalOverlay = document.getElementById('modal-nama-overlay');
+  const modalContent = document.getElementById('modal-nama-content');
   const btnCloseModal = document.getElementById('btn-close-modal-nama');
-  const formNama      = document.getElementById('form-input-nama');
-  const inputNama     = document.getElementById('input-nama-panggilan');
-  const errorNama     = document.getElementById('error-nama');
-  const progressBars  = document.querySelectorAll('.progress-bar-fill');
+  const formNama = document.getElementById('form-input-nama');
+  const inputNama = document.getElementById('input-nama-panggilan');
+  const errorNama = document.getElementById('error-nama');
+  const progressBars = document.querySelectorAll('.progress-bar-fill');
 
   // Animasi progress bar saat halaman dimuat
   if (progressBars.length) {
-    setTimeout(() => { 
+    setTimeout(() => {
       const pct = `${calculateProgress()}%`;
       progressBars.forEach(bar => { bar.style.width = pct; });
     }, 120);
@@ -469,7 +469,7 @@ export function init() {
   };
 
   if (typeof window !== 'undefined') {
-    window.openModalNama  = openModal;
+    window.openModalNama = openModal;
     window.closeModalNama = closeModal;
   }
 

@@ -12,18 +12,18 @@ Membangun sistem pengiriman data rekap hasil belajar siswa (Nama, Skor Kuis, Sta
 - Siswa mendapat konfirmasi pengiriman berhasil.
 
 ## 📝 Acceptance Criteria
-- [ ] **Tombol "Kirim Rekap ke Guru":**
+- [x] **Tombol "Kirim Rekap ke Guru":**
   - Tombol muncul di halaman Beranda atau halaman hasil kuis setelah semua modul selesai.
   - Tombol aktif hanya jika minimal kuis sudah dikerjakan.
   - Loading state saat pengiriman (spinner/animasi).
-- [ ] **Payload Data yang Dikirim:**
+- [x] **Payload Data yang Dikirim:**
   - Nama siswa (dari `localStorage`).
   - Skor Kuis (nilai tertinggi).
   - Status Studi Kasus (sudah diisi / belum).
   - Status Mind Map (sudah selesai / belum).
   - Jumlah organisasi dijelajahi di Peta (dari Modul 2).
   - Timestamp pengiriman.
-- [ ] **Metode Pengiriman (2 opsi, pilih salah satu):**
+- [x] **Metode Pengiriman (2 opsi, pilih salah satu):**
   - **Opsi A — Hidden Google Form Submit:**
     - Buat Google Form dengan field matching.
     - Submit via hidden `<iframe>` + `<form>` action ke URL Google Form.
@@ -32,11 +32,11 @@ Membangun sistem pengiriman data rekap hasil belajar siswa (Nama, Skor Kuis, Sta
     - Deploy Apps Script `doPost(e)` sebagai Web App.
     - Kirim data via `fetch()` POST ke URL webhook.
     - Handle CORS dengan `doPost` + `ContentService`.
-- [ ] **Feedback Pengiriman:**
+- [x] **Feedback Pengiriman:**
   - ✅ Berhasil → pesan sukses *"Data berhasil dikirim ke guru! 🎉"*
   - ❌ Gagal → pesan error + tombol "Coba Lagi".
   - Flag `sibela_rekap_sent = true` di localStorage agar tidak double submit.
-- [ ] **Konfigurasi:**
+- [x] **Konfigurasi:**
   - URL Google Form/Webhook disimpan di `config.js` agar mudah diganti.
   - Dokumentasi setup Google Form/Apps Script di `docs/setup-google-sheets.md`.
 

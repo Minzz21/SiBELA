@@ -13,6 +13,7 @@
 import { bankSoal, generateQuizDeck } from '../data/bank-soal.js';
 import { KUIS_CONFIG } from '../data/kuis-config.js';
 import { getStorage, setStorage, setProgressStep, STORAGE_KEYS, formatTanggalID } from '../js/utils.js';
+import { renderRekapWidgetHTML, bindRekapWidgetEvents } from '../js/rekap.js';
 
 // State internal sesi kuis
 let state = {
@@ -991,6 +992,11 @@ function renderResultView() {
       </div>
     </div>
 
+    <!-- Kirim Rekap Nilai ke Google Sheets Guru -->
+    <div style="margin-top: 1.25rem; margin-bottom: 1.25rem;">
+      ${renderRekapWidgetHTML({ compact: false })}
+    </div>
+
     <!-- Review Pembahasan Lembar Jawaban -->
     <div class="glass-card p-6 sm:p-8 space-y-5">
       
@@ -1101,6 +1107,9 @@ function bindResultEvents() {
       }
     });
   });
+
+  // Widget Kirim Rekap ke Guru
+  bindRekapWidgetEvents();
 }
 
 /**

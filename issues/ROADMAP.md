@@ -53,7 +53,7 @@ graph TD
 | 8 | [Kuis Evaluasi: Soal, Timer & Feedback](issue8.md) | `feature` `kuis` | 🟠 High | #1, #2 | FR-10, FR-11, FR-12 | ✅ Selesai |
 | 9 | [Mind Map Digital: Kanvas & Validasi](issue9.md) | `feature` `mindmap` | 🟠 High | #1, #2 | FR-13–FR-16 | ✅ Selesai |
 | 10 | [Portal Guru: PIN Auth & Dashboard](issue10.md) | `feature` `portal-guru` | 🟠 High | #1, #2 | FR-17, FR-19 | ⬜ |
-| 11 | [Integrasi Google Sheets](issue11.md) | `feature` `integrasi` | 🟠 High | #3, #8, #9 | FR-18 | ⬜ |
+| 11 | [Integrasi Google Sheets](issue11.md) | `feature` `integrasi` | 🟠 High | #3, #8, #9 | FR-18 | ✅ Selesai |
 | 12 | [Polish UI/UX & Responsivitas Final](issue12.md) | `enhancement` `ui-ux` | 🟡 Medium | #1–#11 | NFR 1-3 | ⬜ |
 | 13 | [Testing, Bug Fixing & Deployment](issue13.md) | `testing` `deployment` | 🔴 Critical | #1–#12 | Pekan 6-7 | ⬜ |
 
