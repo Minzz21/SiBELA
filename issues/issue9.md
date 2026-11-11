@@ -12,32 +12,32 @@ Membangun modul Mind Map Digital dengan kanvas interaktif. Siswa menyusun mind m
 - Siswa merumuskan simpulan untuk presentasi lisan di kelas.
 
 ## 📝 Acceptance Criteria
-- [ ] **Kanvas Kerja Interaktif:**
+- [x] **Kanvas Kerja Interaktif:**
   - Area kanvas besar (scrollable/zoomable) dengan topik utama di tengah: **"Peran Indonesia di Dunia"**.
   - Topik utama ditampilkan sebagai node pusat dengan styling premium.
   - Kanvas bisa di-zoom (pinch/scroll) dan di-pan (drag).
-- [ ] **Panel Kartu Gagasan:**
+- [x] **Panel Kartu Gagasan:**
   - Sidebar/panel bawah berisi kartu-kartu gagasan yang bisa di-drag ke kanvas:
     - Contoh kartu: "Pendiri ASEAN", "Anggota PBB", "Misi Garuda", "KTT G20", "Mediator Konflik", "OKI", dll.
     - Kartu tambahan kosong agar siswa bisa menambah gagasan sendiri (input teks custom).
   - Kartu bisa di-drag & drop ke kanvas (desktop) atau tap-to-place (mobile).
-- [ ] **Koneksi Cabang:**
+- [x] **Koneksi Cabang:**
   - Setelah kartu ditempatkan di kanvas, siswa bisa menghubungkan kartu ke node pusat atau ke kartu lain.
   - Koneksi divisualisasikan dengan garis/kurva (SVG line/bezier).
   - Klik/tap pada kartu lalu klik/tap pada target = buat koneksi.
   - Koneksi bisa dihapus.
-- [ ] **Validasi Minimal 3 Cabang:**
+- [x] **Validasi Minimal 3 Cabang:**
   - Tombol "Periksa Mind Map" memvalidasi:
     - ✅ Minimal 3 node terhubung ke pusat → lanjut.
     - ❌ Kurang dari 3 → pesan error: *"Hubungkan minimal 3 gagasan ke topik utama."*
   - Animasi visual saat validasi (highlight cabang terhubung).
-- [ ] **Form Simpulan Presentasi:**
+- [x] **Form Simpulan Presentasi:**
   - Setelah mind map valid, tampilkan form:
     - Textarea: *"Rumuskan simpulan tentang pentingnya peran Indonesia di dunia (minimal 100 karakter)"*
     - Textarea: *"Sebutkan dasar hukum dari UUD 1945 yang mendukung simpulanmu"*
     - Hint/tooltip: contoh pasal UUD 1945 (Alinea ke-4 Pembukaan, Pasal 11, dll.)
   - Validasi minimum karakter.
-- [ ] **Simpan Visual Mind Map:**
+- [x] **Simpan Visual Mind Map:**
   - Tombol "Simpan sebagai Gambar" → export kanvas ke PNG/JPEG menggunakan `html2canvas` atau Canvas API.
   - Tombol "Simpan & Selesai" → simpan data mind map + simpulan ke localStorage.
   - Update status `mindmap_done = true`.

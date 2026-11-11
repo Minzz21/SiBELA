@@ -45,7 +45,15 @@ const ICONS = {
   exit: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"/></svg>`,
   student: `<svg class="w-6 h-6 text-[#0E4632]" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14v7"/></svg>`,
   lightbulb: `<svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6 6 0 1 0-4.243-1.757L12 12.75Zm0 0h.008M9 21h6m-4.5-3h3"/></svg>`,
-  kktpBadge: `<svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/></svg>`
+  lightbulbSm: `<svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6 6 0 1 0-4.243-1.757L12 12.75Zm0 0h.008M9 21h6m-4.5-3h3"/></svg>`,
+  kktpBadge: `<svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/></svg>`,
+  checkCircle: `<svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+  crossCircle: `<svg class="w-5 h-5 text-rose-700" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+  timerAlert: `<svg class="w-5 h-5 text-amber-700" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+  checkSm: `<svg class="w-3.5 h-3.5 text-emerald-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>`,
+  crossSm: `<svg class="w-3.5 h-3.5 text-rose-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>`,
+  timerSm: `<svg class="w-3.5 h-3.5 text-amber-700" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`,
+  clipboard: `<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"/></svg>`
 };
 
 /**
@@ -510,9 +518,9 @@ function renderActiveView() {
           <div class="page-enter rounded-2xl p-5 sm:p-6 border-2 ${currentAnswer.isCorrect ? 'border-emerald-300 bg-emerald-50/90 text-emerald-950' : (currentAnswer.isTimeout ? 'border-amber-300 bg-amber-50/90 text-amber-950' : 'border-rose-300 bg-rose-50/90 text-rose-950')} space-y-4 shadow-soft">
             
             <!-- Status Feedback -->
-            <div class="flex items-center gap-2.5">
-              <span class="text-2xl flex-shrink-0">
-                ${currentAnswer.isCorrect ? '✅' : (currentAnswer.isTimeout ? '⏱️' : '❌')}
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${currentAnswer.isCorrect ? 'bg-emerald-100 text-emerald-700' : (currentAnswer.isTimeout ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700')}">
+                ${currentAnswer.isCorrect ? ICONS.checkCircle : (currentAnswer.isTimeout ? ICONS.timerAlert : ICONS.crossCircle)}
               </span>
               <strong class="text-base sm:text-lg font-black tracking-tight">
                 ${currentAnswer.isCorrect ? 'Luar Biasa! Jawabanmu Benar' : (currentAnswer.isTimeout ? 'Waktu Habis! Soal Terlewat' : 'Kurang Tepat!')}
@@ -520,12 +528,15 @@ function renderActiveView() {
             </div>
 
             <!-- Kunci Jawaban & Pembahasan -->
-            <div class="text-xs sm:text-sm leading-relaxed ${currentAnswer.isCorrect ? 'text-emerald-950' : (currentAnswer.isTimeout ? 'text-amber-950' : 'text-rose-950')} pl-8 space-y-2">
+            <div class="text-xs sm:text-sm leading-relaxed ${currentAnswer.isCorrect ? 'text-emerald-950' : (currentAnswer.isTimeout ? 'text-amber-950' : 'text-rose-950')} space-y-2.5">
               <div>
                 <span class="font-bold">Kunci Jawaban:</span> Opsi <strong>${letters[q.jawabanBenar]}</strong> (${q.opsi[q.jawabanBenar]}).
               </div>
-              <div class="pt-2 border-t ${currentAnswer.isCorrect ? 'border-emerald-200' : (currentAnswer.isTimeout ? 'border-amber-200' : 'border-rose-200')} font-normal text-gray-700 leading-relaxed">
-                💡 <em>${q.penjelasan}</em>
+              <div class="pt-2.5 border-t ${currentAnswer.isCorrect ? 'border-emerald-200' : (currentAnswer.isTimeout ? 'border-amber-200' : 'border-rose-200')} font-normal text-gray-700 leading-relaxed flex items-start gap-2.5">
+                <span class="w-6 h-6 rounded-md bg-amber-100/80 text-amber-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  ${ICONS.lightbulbSm}
+                </span>
+                <em>${q.penjelasan}</em>
               </div>
             </div>
 
@@ -846,58 +857,116 @@ function renderResultView() {
     filteredAnswers = state.userAnswers.filter(a => !a.isCorrect);
   }
 
+  const radius = 68;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference * (1 - skor / 100);
+  const accentHex = isTuntas ? '#059669' : '#D97706';
+  const trackHex = isTuntas ? '#D1FAE5' : '#FEF3C7';
+  const softGlow = isTuntas ? 'rgba(5, 150, 105, 0.18)' : 'rgba(217, 119, 6, 0.18)';
+
+  const badgeIcon = isTuntas
+    ? `<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.003 0V4.5a2.25 2.25 0 0 0-2.25-2.25h-1.5a2.25 2.25 0 0 0-2.25 2.25v9.75"/></svg>`
+    : `<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>`;
+
   return `
     <!-- Hero Score Summary Card -->
     <div class="glass-card p-6 sm:p-8 text-center border-t-4 ${isTuntas ? 'border-emerald-600 bg-gradient-to-b from-emerald-50/60 via-white to-white' : 'border-amber-500 bg-gradient-to-b from-amber-50/60 via-white to-white'} shadow-card">
       
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-extrabold ${isTuntas ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-200'} mb-4">
-        <span>${isTuntas ? '🌟 HASIL EVALUASI TUNTAS' : '⚠️ SARAN REMEDIAL PEMBELAJARAN'}</span>
+      <!-- Top Status Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-extrabold ${isTuntas ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-200'}" style="margin-bottom: 1.25rem;">
+        ${badgeIcon}
+        <span>${isTuntas ? 'HASIL EVALUASI TUNTAS' : 'SARAN REMEDIAL PEMBELAJARAN'}</span>
       </div>
 
-      <!-- Skor Counter -->
-      <div class="my-3">
-        <div class="text-6xl sm:text-7xl font-black ${isTuntas ? 'text-emerald-700' : 'text-amber-600'} tracking-tight" id="score-counter-display">
-          ${skor}
+      <!-- Highlighted Circular Score Ring -->
+      <div style="width: 176px; height: 176px; margin: 0.5rem auto 1.25rem; position: relative; border-radius: 9999px; background: #ffffff; box-shadow: 0 14px 36px -8px ${softGlow}, inset 0 0 0 1px rgba(0,0,0,0.04); display: flex; align-items: center; justify-content: center;">
+        <svg width="176" height="176" viewBox="0 0 176 176" style="transform: rotate(-90deg); position: absolute; inset: 0;">
+          <circle cx="88" cy="88" r="${radius}" fill="none" stroke="${trackHex}" stroke-width="11" />
+          <circle
+            id="score-ring-circle"
+            cx="88"
+            cy="88"
+            r="${radius}"
+            fill="none"
+            stroke="${accentHex}"
+            stroke-width="11"
+            stroke-linecap="round"
+            stroke-dasharray="${circumference.toFixed(2)}"
+            stroke-dashoffset="${strokeDashoffset.toFixed(2)}"
+            style="transition: stroke-dashoffset 0.25s ease-out;"
+          />
+        </svg>
+
+        <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <span style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; color: #6B7280; text-transform: uppercase;">Skor Akhir</span>
+          <div id="score-counter-display" style="font-size: 3.5rem; line-height: 1; font-weight: 900; color: ${accentHex}; letter-spacing: -0.03em; margin-top: 0.25rem;">
+            ${skor}
+          </div>
+          <span style="font-size: 0.72rem; font-weight: 600; color: #9CA3AF; margin-top: 0.25rem;">dari 100 poin</span>
         </div>
-        <div class="text-xs sm:text-sm font-bold text-gray-500 mt-1">
-          Skala Nilai 0 - 100 (KKTP Minimal: ${KUIS_CONFIG.passingGrade})
-        </div>
+      </div>
+
+      <!-- KKTP Threshold Info -->
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.875rem; border-radius: 9999px; background: #F9FAFB; border: 1px solid #E5E7EB; font-size: 0.75rem; font-weight: 600; color: #4B5563;">
+        <span>Standar KKTP: ≥ ${KUIS_CONFIG.passingGrade}</span>
+        <span style="width: 4px; height: 4px; border-radius: 9999px; background: #D1D5DB;"></span>
+        <span style="font-weight: 800; color: ${accentHex};">${isTuntas ? 'MEMENUHI' : 'BELUM MEMENUHI'}</span>
       </div>
 
       <!-- Pesan Evaluatif -->
-      <div class="max-w-xl mx-auto my-4 p-4 rounded-xl ${isTuntas ? 'bg-emerald-50/80 border border-emerald-200 text-emerald-950' : 'bg-amber-50/80 border border-amber-200 text-amber-950'} text-xs sm:text-sm leading-relaxed">
+      <div class="rounded-2xl ${isTuntas ? 'bg-emerald-50/80 border border-emerald-200 text-emerald-950' : 'bg-amber-50/80 border border-amber-200 text-amber-950'} text-xs sm:text-sm leading-relaxed" style="max-width: 640px; margin: 1.5rem auto; padding: 1.15rem 1.5rem;">
         ${isTuntas ? `
           <strong>Luar Biasa, ${studentName}!</strong> Pemahamanmu mengenai Sistem Pertahanan Keamanan Nasional dan Peran Indonesia di Dunia Internasional telah memenuhi standar kompetensi. Progress belajarmu telah otomatis diperbarui!
         ` : `
-          <strong>Tetap Semangat, ${studentName}!</strong> Nilaimu (${skor}) belum mencapai batas ketuntasan minimal (≥ ${KUIS_CONFIG.passingGrade}). Jangan berkecil hati, kamu dapat mempelajari kembali modul materi dan mengulang kuis untuk meningkatkan pemahamanmu.
+          <strong>Tetap Semangat, ${studentName}!</strong> Nilaimu (<strong>${skor}</strong>) belum mencapai batas ketuntasan minimal (≥ ${KUIS_CONFIG.passingGrade}). Jangan berkecil hati, kamu dapat mempelajari kembali modul materi dan mengulang kuis untuk meningkatkan pemahamanmu.
         `}
       </div>
 
-      <!-- 4 Quick Stats -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto my-6 text-left">
-        <div class="p-3.5 rounded-xl bg-white border border-gray-200/80 shadow-2xs">
-          <div class="text-[11px] font-bold text-gray-500 uppercase">Jawaban Benar</div>
-          <div class="text-xl font-black text-emerald-600 mt-0.5">✅ ${benar} <span class="text-xs font-semibold text-gray-400">/ ${total}</span></div>
+      <!-- 4 Quick Stats Modern Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.875rem; max-width: 720px; margin: 1.5rem auto 0; text-align: left;">
+        <div class="p-4 rounded-2xl bg-white border border-gray-200/90" style="box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.625rem;">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Benar</span>
+            <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">${ICONS.checkCircle}</span>
+          </div>
+          <div style="font-size: 1.625rem; line-height: 1.1; font-weight: 900; color: #059669;">
+            ${benar} <span style="font-size: 0.75rem; font-weight: 600; color: #9CA3AF;">/ ${total}</span>
+          </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-white border border-gray-200/80 shadow-2xs">
-          <div class="text-[11px] font-bold text-gray-500 uppercase">Jawaban Salah</div>
-          <div class="text-xl font-black text-rose-600 mt-0.5">❌ ${salah}</div>
+        <div class="p-4 rounded-2xl bg-white border border-gray-200/90" style="box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.625rem;">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Salah</span>
+            <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">${ICONS.crossCircle}</span>
+          </div>
+          <div style="font-size: 1.625rem; line-height: 1.1; font-weight: 900; color: #E11D48;">
+            ${salah}
+          </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-white border border-gray-200/80 shadow-2xs">
-          <div class="text-[11px] font-bold text-gray-500 uppercase">Waktu Habis</div>
-          <div class="text-xl font-black text-amber-600 mt-0.5">⏱️ ${tidakDijawab}</div>
+        <div class="p-4 rounded-2xl bg-white border border-gray-200/90" style="box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.625rem;">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Waktu Habis</span>
+            <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">${ICONS.timerAlert}</span>
+          </div>
+          <div style="font-size: 1.625rem; line-height: 1.1; font-weight: 900; color: #D97706;">
+            ${tidakDijawab}
+          </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-white border border-gray-200/80 shadow-2xs">
-          <div class="text-[11px] font-bold text-gray-500 uppercase">Akurasi Nilai</div>
-          <div class="text-xl font-black text-primary mt-0.5">🎯 ${skor}%</div>
+        <div class="p-4 rounded-2xl bg-white border border-gray-200/90" style="box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.625rem;">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Akurasi</span>
+            <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">${ICONS.kktpBadge}</span>
+          </div>
+          <div style="font-size: 1.625rem; line-height: 1.1; font-weight: 900; color: #0E4632;">
+            ${skor}%
+          </div>
         </div>
       </div>
 
       <!-- Action Navigation Buttons -->
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-3 border-t border-gray-100">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.75rem; margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid #F3F4F6;">
         ${isTuntas ? `
           <a href="#/mindmap" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-bold text-xs sm:text-sm hover:bg-primary-dark shadow-md hover:shadow-lg transition-all active:scale-95">
             <span>Lanjutkan ke Mind Map Digital</span>
@@ -912,10 +981,10 @@ function renderResultView() {
             ${ICONS.refresh}
             <span>Ulangi Kuis Evaluasi Sekarang</span>
           </button>
-          <a href="#/modul1" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-emerald-50 text-primary font-bold text-xs sm:text-sm border border-primary/30 shadow-xs transition-all">
+          <a href="#/modul1" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-emerald-50 text-primary font-bold text-xs sm:text-sm border border-primary/30 shadow-xs transition-all">
             <span>Pelajari Modul 1 (Sishankamnas)</span>
           </a>
-          <a href="#/modul2" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-emerald-50 text-primary font-bold text-xs sm:text-sm border border-primary/30 shadow-xs transition-all">
+          <a href="#/modul2" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-emerald-50 text-primary font-bold text-xs sm:text-sm border border-primary/30 shadow-xs transition-all">
             <span>Pelajari Modul 2 (Peran Internasional)</span>
           </a>
         `}
@@ -928,7 +997,7 @@ function renderResultView() {
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-200/80 pb-4">
         <div>
           <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
-            <span>📋</span>
+            ${ICONS.clipboard}
             <span>Review Lembar Pembahasan Soal</span>
           </h3>
           <p class="text-xs text-gray-500 mt-0.5">Pelajari kembali alasan di balik setiap jawaban yang benar</p>
@@ -969,8 +1038,9 @@ function renderResultView() {
                   </span>
                   <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">${ans.labelKategori || 'Pendidikan Pancasila'}</span>
                 </div>
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase ${badgeClass}">
-                  ${isCorrect ? '✅ Benar' : (isTimeout ? '⏱️ Waktu Habis' : '❌ Salah')}
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase ${badgeClass}">
+                  ${isCorrect ? ICONS.checkSm : (isTimeout ? ICONS.timerSm : ICONS.crossSm)}
+                  <span>${isCorrect ? 'Benar' : (isTimeout ? 'Waktu Habis' : 'Salah')}</span>
                 </span>
               </div>
 
@@ -996,8 +1066,11 @@ function renderResultView() {
               </div>
 
               <!-- Pembahasan Rujukan -->
-              <div class="p-3 rounded-lg bg-white/70 border border-gray-200/70 text-[11px] text-gray-600 leading-relaxed">
-                <strong class="text-gray-900 font-bold">💡 Pembahasan:</strong> ${ans.penjelasan}
+              <div class="p-3 rounded-lg bg-white/70 border border-gray-200/70 text-[11px] text-gray-600 leading-relaxed flex items-start gap-2">
+                <span class="flex-shrink-0 mt-0.5 text-amber-600">${ICONS.lightbulbSm}</span>
+                <div>
+                  <strong class="text-gray-900 font-bold">Pembahasan:</strong> ${ans.penjelasan}
+                </div>
               </div>
             </div>
           `;
@@ -1031,26 +1104,40 @@ function bindResultEvents() {
 }
 
 /**
- * Animasi Counter Skor dari 0 sampai nilai target
+ * Animasi Counter Skor & Circular Progress Ring dari 0 sampai nilai target
  */
 function animateScoreCounter(targetScore) {
   const displayEl = document.getElementById('score-counter-display');
+  const ringEl = document.getElementById('score-ring-circle');
   if (!displayEl) return;
+
+  const radius = 68;
+  const circumference = 2 * Math.PI * radius;
 
   if (targetScore <= 0) {
     displayEl.textContent = '0';
+    if (ringEl) ringEl.style.strokeDashoffset = circumference.toFixed(2);
     return;
   }
 
   let current = 0;
+  if (ringEl) ringEl.style.strokeDashoffset = circumference.toFixed(2);
   const stepTime = Math.max(15, Math.floor(1000 / targetScore));
 
   const counterInterval = setInterval(() => {
     current += 1;
     displayEl.textContent = current;
+    if (ringEl) {
+      const offset = circumference * (1 - current / 100);
+      ringEl.style.strokeDashoffset = offset.toFixed(2);
+    }
     if (current >= targetScore) {
       clearInterval(counterInterval);
       displayEl.textContent = targetScore;
+      if (ringEl) {
+        const finalOffset = circumference * (1 - targetScore / 100);
+        ringEl.style.strokeDashoffset = finalOffset.toFixed(2);
+      }
     }
   }, stepTime);
 }
