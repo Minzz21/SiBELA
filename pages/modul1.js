@@ -114,17 +114,6 @@ export function render() {
               <span class="w-2.5 h-2.5 rounded-full bg-[#E5A024] animate-pulse"></span>
               <span class="text-xs font-black uppercase tracking-wider text-emerald-200">Video 1: Pertahanan Semesta</span>
             </div>
-
-            <!-- YouTube Open Link Badge -->
-            <a
-              href="https://youtu.be/P9EMx1yznIc"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600/90 hover:bg-red-600 text-white text-[11px] font-bold shadow-xs transition-all active:scale-95"
-            >
-              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              <span>Buka di YouTube ↗</span>
-            </a>
           </div>
 
           <!-- Video Container (YouTube Embed) -->
@@ -132,7 +121,7 @@ export function render() {
             <iframe
               id="modul1-youtube-frame"
               class="w-full h-full block"
-              src="https://www.youtube-nocookie.com/embed/P9EMx1yznIc?rel=0&modestbranding=1"
+              src="https://www.youtube-nocookie.com/embed/P9EMx1yznIc?rel=0&modestbranding=1&iv_load_policy=3"
               title="Video Pembelajaran Sishankamnas - Pendidikan Pancasila"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
