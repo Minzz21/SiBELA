@@ -50,7 +50,7 @@ graph TD
 | 5 | [Modul 1: Form Studi Kasus Nirmiliter](issue5.md) | `feature` `modul1` `form` | 🟠 High | #4 | FR-06 | ⬜ |
 | 6 | [Modul 2: Peta Geopolitik Interaktif](issue6.md) | `feature` `modul2` `peta` | 🟠 High | #1, #2 | FR-07, FR-08 | ⬜ |
 | 7 | [Modul 2: Form Laporan & Validasi Sumber](issue7.md) | `feature` `modul2` `form` | 🟠 High | #6 | FR-09 | ⬜ |
-| 8 | [Kuis Evaluasi: Soal, Timer & Feedback](issue8.md) | `feature` `kuis` | 🟠 High | #1, #2 | FR-10, FR-11, FR-12 | ⬜ |
+| 8 | [Kuis Evaluasi: Soal, Timer & Feedback](issue8.md) | `feature` `kuis` | 🟠 High | #1, #2 | FR-10, FR-11, FR-12 | ✅ Selesai |
 | 9 | [Mind Map Digital: Kanvas & Validasi](issue9.md) | `feature` `mindmap` | 🟠 High | #1, #2 | FR-13–FR-16 | ⬜ |
 | 10 | [Portal Guru: PIN Auth & Dashboard](issue10.md) | `feature` `portal-guru` | 🟠 High | #1, #2 | FR-17, FR-19 | ⬜ |
 | 11 | [Integrasi Google Sheets](issue11.md) | `feature` `integrasi` | 🟠 High | #3, #8, #9 | FR-18 | ⬜ |

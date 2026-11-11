@@ -12,67 +12,61 @@ Membangun modul Kuis Evaluasi interaktif dengan soal pilihan ganda bertahap, cou
 - Skor KKTP menentukan ketuntasan (≥ 75) atau kebutuhan remedial (< 75).
 
 ## 📝 Acceptance Criteria
-- [ ] **Layar Pembuka Kuis:**
+- [x] **Layar Pembuka Kuis:**
   - Tampilkan instruksi singkat: jumlah soal, waktu per soal, passing grade.
   - Nama siswa dari localStorage ditampilkan.
   - Tombol "Mulai Kuis" untuk memulai.
-- [ ] **Penyajian Soal Bertahap:**
+  - Pilihan mode evaluasi pembelajaran (Standar 10 soal, Komprehensif 20 soal, Modul 1 10 soal, Modul 2 10 soal, Bank Soal Penuh 40 soal).
+  - Tampilan rekam jejak skor tertinggi (*Best Score*).
+- [x] **Penyajian Soal Bertahap:**
   - Soal ditampilkan satu per satu (bukan semua sekaligus).
-  - Indikator progress: *"Soal 3 dari 10"* + progress bar.
-  - 4 opsi jawaban (A, B, C, D) dalam bentuk kartu yang bisa di-klik/tap.
-  - Animasi saat soal berganti (slide/fade).
-- [ ] **Countdown Timer:**
-  - Timer per soal (misal: 30 detik per soal) ditampilkan secara visual.
-  - Animasi timer: lingkaran/bar yang mengecil.
-  - Jika waktu habis → otomatis pindah ke soal berikutnya (jawaban dianggap salah).
-  - Timer bisa dikonfigurasi di `data/kuis-config.js`.
-- [ ] **Instant Feedback:**
-  - Setelah memilih jawaban:
-    - ✅ Jawaban benar → kartu berubah hijau + ikon centang.
-    - ❌ Jawaban salah → kartu berubah merah + tunjukkan jawaban benar.
-    - Tampilkan penjelasan singkat (1-2 kalimat) mengapa jawaban tersebut benar.
-  - Delay 2 detik sebelum pindah ke soal berikutnya.
-- [ ] **Bank Soal:**
-  - Minimal 10 soal pilihan ganda (bisa ditambah).
+  - Indikator progress: *"Soal 3 dari 10"* + progress bar visual.
+  - 4 opsi jawaban (A, B, C, D) dalam bentuk kartu interaktif yang bisa di-klik/tap.
+  - Dukungan shortcut keyboard (`A`, `B`, `C`, `D`, `1`, `2`, `3`, `4`, `Space`, `Enter`).
+  - Animasi saat soal berganti (`page-enter`).
+- [x] **Countdown Timer:**
+  - Timer per soal (30 detik per nomor) ditampilkan secara visual.
+  - Animasi timer dinamis: indikator warna hijau (> 10s), kuning (≤ 10s), dan merah berdenyut (≤ 5s).
+  - Jika waktu habis → otomatis freeze opsi, catat sebagai timeout (salah), tampilkan pembahasan, dan lanjut ke soal berikutnya.
+  - Timer dan passing grade dapat dikonfigurasi di `data/kuis-config.js`.
+- [x] **Instant Feedback:**
+  - Setelah memilih jawaban atau waktu habis:
+    - ✅ Jawaban benar → kartu berubah hijau emerald + ikon centang + tanda *"Jawaban Kamu Benar!"*.
+    - ❌ Jawaban salah → kartu pilihan siswa berubah merah rose + ikon silang + kartu kunci jawaban disorot hijau dengan centang.
+    - ⏱️ Waktu habis → kartu kunci jawaban disorot hijau dengan notifikasi timeout.
+    - Tampilkan penjelasan ilmiah & rujukan materi resmi lengkap untuk setiap nomor.
+  - Delay jeda otomatis (2.5 detik) sebelum pindah ke soal berikutnya, disertai tombol *"Lanjut Sekarang ⏩"* untuk siswa yang ingin melewati jeda.
+- [x] **Bank Soal:**
+  - 40 soal pilihan ganda komprehensif terverifikasi (20 soal Materi 1 Sishankamnas + 20 soal Materi 2 Peran Internasional) dari bank soal Word resmi.
   - Soal diacak urutannya setiap kali kuis dimulai.
-  - Opsi jawaban juga diacak posisinya.
-  - Data soal disimpan di `data/bank-soal.js`.
-- [ ] **Perhitungan Skor & Hasil:**
-  - Skor = `(jawaban_benar / total_soal) × 100`.
+  - 4 posisi opsi jawaban juga diacak posisinya tanpa mengubah kunci jawaban.
+  - Algoritma Fisher-Yates shuffle teruji (0 error mapping).
+  - Data soal disimpan rapi di `data/bank-soal.js`.
+- [x] **Perhitungan Skor & Hasil:**
+  - Skor dihitung otomatis: `(jawaban_benar / total_soal) × 100`.
   - Halaman hasil menampilkan:
-    - Skor akhir dengan animasi counter.
-    - Status: 🎉 **TUNTAS** (≥ 75) atau ⚠️ **BELUM TUNTAS** (< 75).
-    - Ringkasan: berapa soal benar, salah, dan tidak dijawab.
-  - Jika **TUNTAS**: tombol "Lanjutkan ke Mind Map" + konfeti.
-  - Jika **BELUM TUNTAS**: tombol "Pelajari Kembali Materi" (arahkan ke Modul 1/2) + tombol "Coba Lagi".
-- [ ] **State Management:**
-  - Simpan hasil kuis di localStorage: `sibela_kuis`.
-  - Update `kuis_done = true` jika tuntas.
-  - Simpan skor tertinggi (best score) jika mengulang.
+    - Skor akhir dengan animasi counter count-up.
+    - Status: 🎉 **TUNTAS** (≥ 75) atau ⚠️ **BELUM TUNTAS / REMEDIAL** (< 75).
+    - Ringkasan statistik 4 kartu: Benar, Salah, Waktu Habis, dan Akurasi.
+    - Lembar review pembahasan interaktif lengkap seluruh nomor dengan filter (Semua, Perlu Diperbaiki, Benar).
+  - Jika **TUNTAS**: tombol *"Lanjutkan ke Mind Map"* + efek selebrasi konfeti multi-burst (`canvas-confetti`).
+  - Jika **BELUM TUNTAS**: saran remedial materi terkait + tombol *"Pelajari Modul 1"*, *"Pelajari Modul 2"*, dan tombol *"Ulangi Kuis"*.
+- [x] **State Management:**
+  - Simpan hasil kuis di localStorage: `sibela_kuis` (skor, benar, salah, tidakDijawab, total, isTuntas, bestScore, mode, tanggal).
+  - Otomatis update status ketuntasan modul kuis: `setProgressStep('kuis', true)` jika skor ≥ 75.
+  - Simpan dan pertahankan skor tertinggi (*best score*).
 
 ## 🔗 Referensi PRD
 - **FR-10:** Soal kuis bertahap dengan countdown timer.
-- **FR-11:** Instant feedback + penjelasan.
+- **FR-11:** Instant feedback + penjelasan kunci jawaban.
 - **FR-12:** Perhitungan skor KKTP ≥ 75 = tuntas, < 75 = remedial.
 
 ## 📌 Catatan Teknis
-- Struktur bank soal di `data/bank-soal.js`:
-  ```js
-  export const bankSoal = [
-    {
-      id: 1,
-      pertanyaan: "Komponen utama pertahanan negara Indonesia adalah...",
-      opsi: ["TNI dan Polri", "Rakyat sipil", "PMI", "Komnas HAM"],
-      jawabanBenar: 0,
-      penjelasan: "Sesuai UU No. 3/2002, komponen utama adalah TNI."
-    },
-    // ...
-  ];
-  ```
-- Gunakan Fisher-Yates shuffle untuk pengacakan soal & opsi.
-- Timer menggunakan `setInterval` / `requestAnimationFrame`.
-- State kuis (jawaban per soal) disimpan di memori selama sesi, di-persist ke localStorage saat selesai.
+- `data/bank-soal.js`: 40 soal terverifikasi dari modul 1 & 2 beserta helper `generateQuizDeck` dan `shuffleArray`.
+- `data/kuis-config.js`: konfigurasi `waktuPerSoal`, `passingGrade`, `feedbackDelay`, dan `modeList`.
+- `pages/kuis.js`: controller SPA modul kuis dengan state machine (intro → active → result).
+- `js/utils.js`: terintegrasi dengan `STORAGE_KEYS.KUIS` dan `setProgressStep('kuis', true)`.
 
 ## ⬅️ Depends On
-- Issue #1 (Setup Proyek)
-- Issue #2 (Routing SPA)
+- Issue #1 (Setup Proyek) ✅
+- Issue #2 (Routing SPA) ✅
