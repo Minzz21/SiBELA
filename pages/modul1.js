@@ -5,6 +5,8 @@
  */
 
 import { getStorage, setStorage, getProgressData, setProgressStep, showToast } from '../js/utils.js';
+import { renderLearningTargetModal, setupLearningTargetModal } from '../data/target-belajar.js';
+import { STUDI_KASUS_MATERI_1, evaluateStudiKasusMateri1 } from '../data/studikasus-materi1.js';
 
 const STORAGE_KEY_VIDEO_WATCHED = 'sibela_modul1_video_watched';
 
@@ -64,8 +66,19 @@ export function render() {
             
           </div>
 
-          <div class="hidden sm:flex items-center gap-2 self-start sm:self-center">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-100 border border-white/20 shadow-xs">
+          <div class="flex items-center gap-2 self-start sm:self-center">
+            <button
+              type="button"
+              id="btn-open-target-modal"
+              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black bg-[#E5A024] hover:bg-amber-400 active:scale-95 text-gray-900 shadow-sm transition-all cursor-pointer"
+              title="Lihat Apa yang Dipelajari, Capaian & Tujuan Pembelajaran"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+              </svg>
+              <span>Capaian &amp; Tujuan</span>
+            </button>
+            <span class="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-100 border border-white/20 shadow-xs">
               <span class="w-2 h-2 rounded-full bg-[#E5A024] animate-pulse"></span>
               <span>Tahap 1 dari 4: Sishankamnas</span>
             </span>
@@ -550,285 +563,405 @@ export function render() {
       <!-- ================= TAB CONTENT 3: STUDI KASUS ================= -->
       <section id="tab-panel-studikasus" class="tab-panel hidden space-y-6">
 
+        <!-- Top Header & Badges -->
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
           <div>
             <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#E5A024] mb-0.5">
               <span class="w-3.5 h-0.5 bg-[#E5A024]"></span>
-              <span>Aktivitas 3 • Studi Kasus Lokal</span>
+              <span>Aktivitas 3 • Studi Kasus Pembelajaran</span>
             </div>
             <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
-              Analisis Ancaman Nirmiliter di Lingkungan Sekitar
+              Penerapan &amp; Analisis Sishankamrata di Lapangan
             </h2>
             <p class="text-xs sm:text-sm text-gray-600 mt-1 max-w-2xl leading-relaxed">
-              Bela negara di era modern tidak hanya angkat senjata. Pilih salah satu kategori ancaman nirmiliter non-fisik di bawah, identifikasi contoh nyata di sekitarmu, dan rumuskan solusi aksi bela negara!
+              Tersedia dua metode studi kasus: (1) <strong>Studi Kasus Interaktif</strong> dengan penilaian otomatis sistem, dan (2) <strong>Lembar Analisis Kasus Lokal</strong> untuk penilaian tugas oleh guru di kelas.
             </p>
           </div>
 
-          <div id="badge-studikasus-status">
-            ${studiKasusData
-              ? `<span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300">
-                   ${IC.check} Jawaban Tersimpan
+          <div class="flex items-center gap-2 flex-wrap" id="badge-studikasus-status">
+            ${studiKasusData?.interaktif_skor !== undefined || studiKasusData?.skor !== undefined
+              ? `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-xs">
+                   ${IC.check} Nilai Sistem: ${studiKasusData.interaktif_skor ?? studiKasusData.skor}/100
                  </span>`
-              : `<span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300">
-                   Wajib Diisi (Min. 50 Karakter)
+              : `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300 shadow-xs">
+                   Penilaian Sistem
+                 </span>`
+            }
+            ${studiKasusData?.contoh_ancaman
+              ? `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-xs">
+                   ${IC.check} Lembar Guru Terisi
+                 </span>`
+              : `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-gray-100 text-gray-600 border border-gray-200">
+                   Lembar Guru
                  </span>`
             }
           </div>
         </div>
 
-        <!-- Saved Answer Preview Card -->
-        <div id="studikasus-saved-card" class="${studiKasusData ? 'block' : 'hidden'} bg-[#0E4632] text-white rounded-3xl p-6 sm:p-8 shadow-card border border-emerald-800/80 relative overflow-hidden">
-          <div class="relative z-10 space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-800/80 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-[#E5A024]"></span>
-                <span class="text-xs font-bold uppercase tracking-wider text-[#E5A024]">Hasil Analisis Studi Kasus Anda</span>
-              </div>
-              <span class="text-[11px] text-emerald-300/80 font-mono" id="saved-timestamp">
-                ${studiKasusData?.timestamp ? new Date(studiKasusData.timestamp).toLocaleString('id-ID') : ''}
-              </span>
-            </div>
+        <!-- Sub-tab Pills Switcher: Penilaian Sistem VS Penilaian Guru -->
+        <div class="flex items-center gap-2 p-1.5 bg-gray-100/90 rounded-2xl w-fit flex-wrap border border-gray-200/80">
+          <button
+            type="button"
+            id="subtab-btn-sistem"
+            class="subtab-studi-btn px-4 py-2 rounded-xl text-xs font-black transition-all bg-[#0E4632] text-white shadow-xs cursor-pointer flex items-center gap-2"
+          >
+            <span class="w-2 h-2 rounded-full bg-[#E5A024]"></span>
+            <span>1. Studi Kasus Interaktif (Penilaian Sistem)</span>
+          </button>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div class="bg-white/10 rounded-2xl p-4 border border-white/15 md:col-span-1">
-                <span class="text-emerald-200 font-semibold block mb-1">Kategori Ancaman:</span>
-                <span class="text-white font-bold text-sm block" id="saved-kategori-label">
-                  ${studiKasusData?.kategori_label || '-'}
-                </span>
-              </div>
-              <div class="bg-white/10 rounded-2xl p-4 border border-white/15 md:col-span-2">
-                <span class="text-emerald-200 font-semibold block mb-1">Contoh Temuan di Lingkungan:</span>
-                <p class="text-emerald-100 leading-relaxed italic" id="saved-contoh-text">
-                  "${studiKasusData?.contoh_ancaman || '-'}"
-                </p>
-              </div>
-            </div>
-
-            <div class="bg-white/10 rounded-2xl p-4 border border-white/15 text-xs">
-              <span class="text-[#E5A024] font-semibold block mb-1">Usulan Solusi Bela Negara:</span>
-              <p class="text-white leading-relaxed font-medium" id="saved-solusi-text">
-                "${studiKasusData?.solusi || '-'}"
-              </p>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
-              <p class="text-[11px] text-emerald-200/80">
-                Data tersimpan di perangkat dan siap dinilai oleh guru melalui Portal Guru.
-              </p>
-              <button
-                type="button"
-                id="btn-edit-studikasus"
-                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white text-xs font-bold border border-white/30 transition-all cursor-pointer active:scale-95"
-              >
-                ${IC.fileEdit}
-                <span>Edit Jawaban</span>
-              </button>
-            </div>
-          </div>
+          <button
+            type="button"
+            id="subtab-btn-guru"
+            class="subtab-studi-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-transparent text-gray-600 hover:text-gray-900 cursor-pointer flex items-center gap-2"
+          >
+            <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+            <span>2. Lembar Analisis Lokal (Penilaian Guru)</span>
+          </button>
         </div>
 
-        <!-- Interactive Form -->
-        <form id="form-studikasus" class="${studiKasusData ? 'hidden' : 'block'} bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
+        <!-- ================= SUB-PANEL 1: STUDI KASUS INTERAKTIF (SISTEM) ================= -->
+        <div id="subpanel-studi-sistem" class="space-y-4">
           
-          <!-- 1. Kategori Selection -->
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider">
-                Langkah 1: Pilih Kategori Ancaman Nirmiliter <span class="text-rose-500">*</span>
-              </label>
-              <span class="text-[11px] text-gray-500 hidden sm:inline">Pilih salah satu persoalan non-militer</span>
+          <!-- 2 Kolom Layout: Kiri Narasi Kasus (Interactive), Kanan Hasil Evaluasi Sistem -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-start">
+
+            <!-- KOLOM KIRI (7/12): PARAGRAF STUDI KASUS INTERAKTIF -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="bg-white rounded-3xl p-5 sm:p-7 border border-gray-200/80 shadow-xs space-y-4">
+                
+                <div class="flex items-center justify-between pb-3 border-b border-gray-100 flex-wrap gap-2">
+                  <div>
+                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                      Studi Kasus Kontekstual
+                    </span>
+                    <h3 class="text-sm sm:text-base font-black text-gray-900 mt-1">
+                      ${STUDI_KASUS_MATERI_1.judul}
+                    </h3>
+                  </div>
+                  <span id="counter-terpilih" class="text-xs font-bold text-[#0E4632] bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full whitespace-nowrap">
+                    0 kalimat dipilih
+                  </span>
+                </div>
+
+                <!-- Petunjuk Interaktif Siswa -->
+                <div class="text-xs text-gray-600 bg-amber-50/70 p-3 sm:p-3.5 rounded-2xl border border-amber-200/70 flex items-start gap-2.5 leading-relaxed">
+                  <span class="text-[#E5A024] font-bold text-sm mt-0.5 flex-shrink-0">💡</span>
+                  <span>
+                    <strong>Cara Mengerjakan:</strong> Ketuk atau klik kalimat di dalam teks untuk memilihnya. Kalimat yang kamu pilih akan <strong>berwarna hijau</strong>. Pilihlah semua kalimat yang merupakan penerapan Sishankamrata yang tepat, lalu klik <strong>"Periksa Jawaban"</strong>.
+                  </span>
+                </div>
+
+                <!-- Narasi Studi Kasus dengan Kalimat Clickable -->
+                <div class="space-y-1.5">
+                  <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">
+                    Teks Narasi Kasus (Ketuk kalimat untuk menandai):
+                  </span>
+                  <div id="container-kalimat-kasus" class="p-4 sm:p-5 rounded-2xl bg-[#FAF7EE] border border-amber-100 text-xs sm:text-[13px] leading-loose text-gray-800 transition-all select-none">
+                    ${STUDI_KASUS_MATERI_1.kalimat.map(k => `
+                      <span
+                        data-id="${k.id}"
+                        class="kalimat-item cursor-pointer inline transition-all duration-150 px-1 py-0.5 rounded border border-transparent hover:border-emerald-300 hover:bg-emerald-50/80 my-0.5"
+                        title="Ketuk untuk memilih atau membatalkan kalimat ${k.id}"
+                      >
+                        <span class="text-[10px] font-black text-gray-400 bg-white border border-gray-200 px-1 py-0.2 rounded-sm mr-1 pointer-events-none">[${k.id}]</span><span class="kalimat-text">${k.teks}</span>
+                      </span>
+                    `).join(' ')}
+                  </div>
+                </div>
+
+                <!-- Tombol Aksi di Bawah Narasi -->
+                <div class="flex items-center justify-between gap-2.5 pt-3 border-t border-gray-100 flex-wrap">
+                  <button
+                    type="button"
+                    id="btn-reset-pilihan"
+                    class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer active:scale-95"
+                  >
+                    ${IC.replay}
+                    <span>Reset Pilihan</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    id="btn-periksa-jawaban"
+                    class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full bg-[#0E4632] hover:bg-[#062B20] text-white text-xs font-black shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+                  >
+                    <span>Periksa Jawaban</span>
+                    ${IC.arrowRight}
+                  </button>
+                </div>
+
+              </div>
             </div>
+
+            <!-- KOLOM KANAN (5/12): PANEL HASIL JAWABAN (EVALUASI SISTEM) -->
+            <div class="lg:col-span-5 space-y-4">
+              <div id="panel-hasil-jawaban" class="bg-white rounded-3xl p-5 sm:p-7 border border-gray-200/80 shadow-xs space-y-4">
+                <!-- Rendered via JS: State Belum Diperiksa ATAU State Hasil Evaluasi -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= SUB-PANEL 2: LEMBAR ANALISIS KASUS LOKAL (GURU) ================= -->
+        <div id="subpanel-studi-guru" class="hidden space-y-5">
+          
+          <!-- Saved Answer Preview Card -->
+          <div id="studikasus-saved-card" class="${studiKasusData?.contoh_ancaman ? 'block' : 'hidden'} bg-[#0E4632] text-white rounded-3xl p-6 sm:p-8 shadow-card border border-emerald-800/80 relative overflow-hidden">
+            <div class="relative z-10 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-800/80 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#E5A024]"></span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-[#E5A024]">Lembar Analisis Kasus Lokal Anda</span>
+                </div>
+                <span class="text-[11px] text-emerald-300/80 font-mono" id="saved-timestamp">
+                  ${studiKasusData?.timestamp ? new Date(studiKasusData.timestamp).toLocaleString('id-ID') : ''}
+                </span>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div class="bg-white/10 rounded-2xl p-4 border border-white/15 md:col-span-1">
+                  <span class="text-emerald-200 font-semibold block mb-1">Kategori Ancaman:</span>
+                  <span class="text-white font-bold text-sm block" id="saved-kategori-label">
+                    ${studiKasusData?.kategori_label || '-'}
+                  </span>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-4 border border-white/15 md:col-span-2">
+                  <span class="text-emerald-200 font-semibold block mb-1">Contoh Temuan di Lingkungan:</span>
+                  <p class="text-emerald-100 leading-relaxed italic" id="saved-contoh-text">
+                    "${studiKasusData?.contoh_ancaman || '-'}"
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white/10 rounded-2xl p-4 border border-white/15 text-xs">
+                <span class="text-[#E5A024] font-semibold block mb-1">Usulan Solusi Bela Negara:</span>
+                <p class="text-white leading-relaxed font-medium" id="saved-solusi-text">
+                  "${studiKasusData?.solusi || '-'}"
+                </p>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                <p class="text-[11px] text-emerald-200/80">
+                  Data tersimpan di perangkat dan siap dinilai oleh guru melalui Portal Guru.
+                </p>
+                <button
+                  type="button"
+                  id="btn-edit-studikasus"
+                  class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white text-xs font-bold border border-white/30 transition-all cursor-pointer active:scale-95"
+                >
+                  ${IC.fileEdit}
+                  <span>Edit Jawaban</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Form -->
+          <form id="form-studikasus" class="${studiKasusData?.contoh_ancaman ? 'hidden' : 'block'} bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-xs space-y-6">
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3" id="category-selector-group">
+            <!-- 1. Kategori Selection -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="block text-xs font-bold text-gray-800 uppercase tracking-wider">
+                  Langkah 1: Pilih Kategori Ancaman Nirmiliter <span class="text-rose-500">*</span>
+                </label>
+                <span class="text-[11px] text-gray-500 hidden sm:inline">Pilih salah satu persoalan non-militer</span>
+              </div>
               
-              <!-- Hoaks -->
-              <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-2">
-                <input type="radio" name="kategori_ancaman" value="hoaks" data-label="Hoaks &amp; Disinformasi Digital" class="sr-only" ${studiKasusData?.kategori === 'hoaks' || (!studiKasusData) ? 'checked' : ''}>
-                <div class="flex items-start gap-3 min-w-0">
-                  <div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    ${IC.threatHoaks}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-1.5 flex-wrap">
-                      <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Hoaks &amp; Disinformasi</span>
-                      <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3" id="category-selector-group">
+                
+                <!-- Hoaks -->
+                <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-2">
+                  <input type="radio" name="kategori_ancaman" value="hoaks" data-label="Hoaks &amp; Disinformasi Digital" class="sr-only" ${studiKasusData?.kategori === 'hoaks' || (!studiKasusData) ? 'checked' : ''}>
+                  <div class="flex items-start gap-3 min-w-0">
+                    <div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      ${IC.threatHoaks}
                     </div>
-                    <span class="text-[11px] text-gray-500 leading-snug block mt-1">Penyebaran kabar bohong, judi online, dan adu domba medsos.</span>
-                  </div>
-                </div>
-                <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
-              </label>
-
-              <!-- Narkoba -->
-              <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-2">
-                <input type="radio" name="kategori_ancaman" value="narkoba" data-label="Penyalahgunaan Narkoba" class="sr-only" ${studiKasusData?.kategori === 'narkoba' ? 'checked' : ''}>
-                <div class="flex items-start gap-3 min-w-0">
-                  <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    ${IC.threatDrug}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-1.5 flex-wrap">
-                      <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Penyalahgunaan Narkoba</span>
-                      <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Hoaks &amp; Disinformasi</span>
+                        <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                      </div>
+                      <span class="text-[11px] text-gray-500 leading-snug block mt-1">Penyebaran kabar bohong, judi online, dan adu domba medsos.</span>
                     </div>
-                    <span class="text-[11px] text-gray-500 leading-snug block mt-1">Peredaran zat adiktif perusak mental dan fisik generasi muda.</span>
                   </div>
-                </div>
-                <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
-              </label>
+                  <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
+                </label>
 
-              <!-- Intoleransi -->
-              <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-2">
-                <input type="radio" name="kategori_ancaman" value="intoleransi" data-label="Intoleransi &amp; Radikalisme" class="sr-only" ${studiKasusData?.kategori === 'intoleransi' ? 'checked' : ''}>
-                <div class="flex items-start gap-3 min-w-0">
-                  <div class="w-9 h-9 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    ${IC.threatRadical}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-1.5 flex-wrap">
-                      <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Intoleransi &amp; Ekstremisme</span>
-                      <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                <!-- Narkoba -->
+                <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-2">
+                  <input type="radio" name="kategori_ancaman" value="narkoba" data-label="Penyalahgunaan Narkoba" class="sr-only" ${studiKasusData?.kategori === 'narkoba' ? 'checked' : ''}>
+                  <div class="flex items-start gap-3 min-w-0">
+                    <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      ${IC.threatDrug}
                     </div>
-                    <span class="text-[11px] text-gray-500 leading-snug block mt-1">Sikap memaksakan kehendak dan memecah kerukunan antarwarga.</span>
-                  </div>
-                </div>
-                <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
-              </label>
-
-              <!-- Lingkungan -->
-              <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-3">
-                <input type="radio" name="kategori_ancaman" value="lingkungan" data-label="Kerusakan Lingkungan" class="sr-only" ${studiKasusData?.kategori === 'lingkungan' ? 'checked' : ''}>
-                <div class="flex items-start gap-3 min-w-0">
-                  <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    ${IC.threatNature}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-1.5 flex-wrap">
-                      <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Kerusakan Lingkungan</span>
-                      <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Penyalahgunaan Narkoba</span>
+                        <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                      </div>
+                      <span class="text-[11px] text-gray-500 leading-snug block mt-1">Peredaran zat adiktif perusak mental dan fisik generasi muda.</span>
                     </div>
-                    <span class="text-[11px] text-gray-500 leading-snug block mt-1">Pembalakan liar, pencemaran sungai/laut, dan krisis sampah lokal.</span>
                   </div>
-                </div>
-                <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
-              </label>
+                  <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
+                </label>
 
-              <!-- Kesenjangan -->
-              <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-2 lg:col-span-3">
-                <input type="radio" name="kategori_ancaman" value="kesenjangan" data-label="Kemiskinan &amp; Kesenjangan Sosial" class="sr-only" ${studiKasusData?.kategori === 'kesenjangan' ? 'checked' : ''}>
-                <div class="flex items-start gap-3 min-w-0">
-                  <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    ${IC.threatSocial}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-1.5 flex-wrap">
-                      <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Kemiskinan &amp; Kesenjangan</span>
-                      <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                <!-- Intoleransi -->
+                <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-2">
+                  <input type="radio" name="kategori_ancaman" value="intoleransi" data-label="Intoleransi &amp; Radikalisme" class="sr-only" ${studiKasusData?.kategori === 'intoleransi' ? 'checked' : ''}>
+                  <div class="flex items-start gap-3 min-w-0">
+                    <div class="w-9 h-9 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      ${IC.threatRadical}
                     </div>
-                    <span class="text-[11px] text-gray-500 leading-snug block mt-1">Anak putus sekolah, ketimpangan fasilitas, dan kerentanan ekonomi warga.</span>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Intoleransi &amp; Ekstremisme</span>
+                        <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                      </div>
+                      <span class="text-[11px] text-gray-500 leading-snug block mt-1">Sikap memaksakan kehendak dan memecah kerukunan antarwarga.</span>
+                    </div>
                   </div>
-                </div>
-                <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
-              </label>
+                  <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
+                </label>
 
-            </div>
-          </div>
+                <!-- Lingkungan -->
+                <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-1 lg:col-span-3">
+                  <input type="radio" name="kategori_ancaman" value="lingkungan" data-label="Kerusakan Lingkungan" class="sr-only" ${studiKasusData?.kategori === 'lingkungan' ? 'checked' : ''}>
+                  <div class="flex items-start gap-3 min-w-0">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      ${IC.threatNature}
+                    </div>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Kerusakan Lingkungan</span>
+                        <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                      </div>
+                      <span class="text-[11px] text-gray-500 leading-snug block mt-1">Pembalakan liar, pencemaran sungai/laut, dan krisis sampah lokal.</span>
+                    </div>
+                  </div>
+                  <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
+                </label>
 
-          <!-- 2. Textarea Deskripsi Temuan -->
-          <div>
-            <div class="flex items-center justify-between mb-1.5">
-              <label for="input-contoh-ancaman" class="text-xs font-bold text-gray-800 uppercase tracking-wider">
-                Langkah 2: Deskripsi Contoh Nyata di Sekitar <span class="text-rose-500">*</span>
-              </label>
-              <span id="char-counter-contoh" class="text-[11px] font-mono text-gray-400">
-                0 / 50 min. karakter
-              </span>
-            </div>
-            <textarea
-              id="input-contoh-ancaman"
-              rows="3"
-              placeholder="Ceritakan kejadian nyata atau situasi yang pernah kamu lihat langsung di lingkungan madrasah, desa, atau media sosial yang mencerminkan ancaman kategori di atas..."
-              class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none focus:border-secondary focus:bg-white transition-all placeholder:text-gray-400 leading-relaxed"
-            >${studiKasusData?.contoh_ancaman || ''}</textarea>
-            <p id="error-contoh" class="hidden text-rose-600 text-xs mt-1 font-medium">
-              Harap jelaskan minimal 50 karakter agar analisis lebih berbobot.
-            </p>
-          </div>
+                <!-- Kesenjangan -->
+                <label class="category-card relative flex items-start justify-between gap-3 p-3.5 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/60 cursor-pointer transition-all duration-200 select-none sm:col-span-2 lg:col-span-3">
+                  <input type="radio" name="kategori_ancaman" value="kesenjangan" data-label="Kemiskinan &amp; Kesenjangan Sosial" class="sr-only" ${studiKasusData?.kategori === 'kesenjangan' ? 'checked' : ''}>
+                  <div class="flex items-start gap-3 min-w-0">
+                    <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      ${IC.threatSocial}
+                    </div>
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <span class="text-xs sm:text-sm font-black text-gray-900 leading-tight">Kemiskinan &amp; Kesenjangan</span>
+                        <span class="category-badge-selected hidden px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-secondary text-white">Terpilih</span>
+                      </div>
+                      <span class="text-[11px] text-gray-500 leading-snug block mt-1">Anak putus sekolah, ketimpangan fasilitas, dan kerentanan ekonomi warga.</span>
+                    </div>
+                  </div>
+                  <div class="category-radio-icon w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5"></div>
+                </label>
 
-          <!-- 3. Textarea Usulan Solusi -->
-          <div>
-            <div class="flex items-center justify-between mb-1.5">
-              <label for="input-solusi-ancaman" class="text-xs font-bold text-gray-800 uppercase tracking-wider">
-                Langkah 3: Gagasan Solusi Aksi Bela Negara <span class="text-rose-500">*</span>
-              </label>
-              <span id="char-counter-solusi" class="text-[11px] font-mono text-gray-400">
-                0 / 50 min. karakter
-              </span>
-            </div>
-            <textarea
-              id="input-solusi-ancaman"
-              rows="3"
-              placeholder="Sebagai pelajar dan warga negara, tindakan konkret apa yang dapat kamu dan teman-temanmu lakukan untuk mencegah atau mengatasi persoalan tersebut? (Contoh: kampanye literasi digital, gotong royong, dll)"
-              class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none focus:border-secondary focus:bg-white transition-all placeholder:text-gray-400 leading-relaxed"
-            >${studiKasusData?.solusi || ''}</textarea>
-            <p id="error-solusi" class="hidden text-rose-600 text-xs mt-1 font-medium">
-              Harap rumuskan usulan solusi minimal 50 karakter.
-            </p>
-          </div>
-
-          <!-- Live Preview Box -->
-          <div id="preview-box" class="hidden bg-gray-50 rounded-2xl p-5 border border-gray-200 space-y-3">
-            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-              <span class="text-xs font-bold text-gray-700 uppercase tracking-wider">Pratinjau Lembar Studi Kasus</span>
-              <span class="text-[10px] font-semibold text-secondary px-2 py-0.5 rounded-full bg-emerald-100">Siap Disimpan</span>
-            </div>
-            <div class="text-xs space-y-2">
-              <div>
-                <span class="text-gray-500 font-medium">Kategori Terpilih:</span>
-                <span class="font-bold text-gray-900 block" id="preview-kategori">-</span>
-              </div>
-              <div>
-                <span class="text-gray-500 font-medium">Temuan Kasus:</span>
-                <p class="text-gray-800 italic" id="preview-contoh">-</p>
-              </div>
-              <div>
-                <span class="text-gray-500 font-medium">Solusi Bela Negara:</span>
-                <p class="text-gray-900 font-semibold" id="preview-solusi">-</p>
               </div>
             </div>
-          </div>
 
-          <!-- Buttons Row -->
-          <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-100">
-            <button
-              type="button"
-              id="btn-preview-studikasus"
-              class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer"
-            >
-              <span id="btn-preview-icon">${IC.eye}</span>
-              <span id="btn-preview-label">Pratinjau Jawaban</span>
-            </button>
+            <!-- 2. Textarea Deskripsi Temuan -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label for="input-contoh-ancaman" class="text-xs font-bold text-gray-800 uppercase tracking-wider">
+                  Langkah 2: Deskripsi Contoh Nyata di Sekitar <span class="text-rose-500">*</span>
+                </label>
+                <span id="char-counter-contoh" class="text-[11px] font-mono text-gray-400">
+                  0 / 50 min. karakter
+                </span>
+              </div>
+              <textarea
+                id="input-contoh-ancaman"
+                rows="3"
+                placeholder="Ceritakan kejadian nyata atau situasi yang pernah kamu lihat langsung di lingkungan madrasah, desa, atau media sosial yang mencerminkan ancaman kategori di atas..."
+                class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none focus:border-secondary focus:bg-white transition-all placeholder:text-gray-400 leading-relaxed"
+              >${studiKasusData?.contoh_ancaman || ''}</textarea>
+              <p id="error-contoh" class="hidden text-rose-600 text-xs mt-1 font-medium">
+                Harap jelaskan minimal 50 karakter agar analisis lebih berbobot.
+              </p>
+            </div>
 
-            <div class="flex items-center gap-2">
+            <!-- 3. Textarea Usulan Solusi -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label for="input-solusi-ancaman" class="text-xs font-bold text-gray-800 uppercase tracking-wider">
+                  Langkah 3: Gagasan Solusi Aksi Bela Negara <span class="text-rose-500">*</span>
+                </label>
+                <span id="char-counter-solusi" class="text-[11px] font-mono text-gray-400">
+                  0 / 50 min. karakter
+                </span>
+              </div>
+              <textarea
+                id="input-solusi-ancaman"
+                rows="3"
+                placeholder="Sebagai pelajar dan warga negara, tindakan konkret apa yang dapat kamu dan teman-temanmu lakukan untuk mencegah atau mengatasi persoalan tersebut? (Contoh: kampanye literasi digital, gotong royong, dll)"
+                class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none focus:border-secondary focus:bg-white transition-all placeholder:text-gray-400 leading-relaxed"
+              >${studiKasusData?.solusi || ''}</textarea>
+              <p id="error-solusi" class="hidden text-rose-600 text-xs mt-1 font-medium">
+                Harap rumuskan usulan solusi minimal 50 karakter.
+              </p>
+            </div>
+
+            <!-- Live Preview Box -->
+            <div id="preview-box" class="hidden bg-gray-50 rounded-2xl p-5 border border-gray-200 space-y-3">
+              <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+                <span class="text-xs font-bold text-gray-700 uppercase tracking-wider">Pratinjau Lembar Studi Kasus</span>
+                <span class="text-[10px] font-semibold text-secondary px-2 py-0.5 rounded-full bg-emerald-100">Siap Disimpan</span>
+              </div>
+              <div class="text-xs space-y-2">
+                <div>
+                  <span class="text-gray-500 font-medium">Kategori Terpilih:</span>
+                  <span class="font-bold text-gray-900 block" id="preview-kategori">-</span>
+                </div>
+                <div>
+                  <span class="text-gray-500 font-medium">Temuan Kasus:</span>
+                  <p class="text-gray-800 italic" id="preview-contoh">-</p>
+                </div>
+                <div>
+                  <span class="text-gray-500 font-medium">Solusi Bela Negara:</span>
+                  <p class="text-gray-900 font-semibold" id="preview-solusi">-</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons Row -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-100">
               <button
                 type="button"
-                id="btn-cancel-edit"
-                class="${studiKasusData ? 'inline-flex' : 'hidden'} items-center px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer"
+                id="btn-preview-studikasus"
+                class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer"
               >
-                Batal
+                <span id="btn-preview-icon">${IC.eye}</span>
+                <span id="btn-preview-label">Pratinjau Jawaban</span>
               </button>
-              <button
-                type="submit"
-                id="btn-submit-studikasus"
-                class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0E4632] hover:bg-[#062B20] text-white text-xs font-black shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
-              >
-                <span>Simpan &amp; Tuntaskan Modul 1</span>
-                ${IC.arrowRight}
-              </button>
-            </div>
-          </div>
 
-        </form>
+              <div class="flex items-center gap-2">
+                <button
+                  type="button"
+                  id="btn-cancel-edit"
+                  class="${studiKasusData?.contoh_ancaman ? 'inline-flex' : 'hidden'} items-center px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  id="btn-submit-studikasus"
+                  class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0E4632] hover:bg-[#062B20] text-white text-xs font-black shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+                >
+                  <span>Simpan Lembar Analisis Guru</span>
+                  ${IC.arrowRight}
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
 
         <!-- Navigation Footer -->
         <div class="flex items-center justify-between gap-3 pt-6 border-t border-gray-200">
@@ -848,6 +981,9 @@ export function render() {
 
       </section>
 
+      <!-- Pop-up Modal Capaian & Tujuan Pembelajaran -->
+      ${renderLearningTargetModal('modul1')}
+
     </div>
   `;
 }
@@ -856,6 +992,9 @@ export function render() {
  * Logika Interaktif Modul 1 (Tabs, Video Player Controller, Accordions, & Form Studi Kasus)
  */
 export function init() {
+  // Inisialisasi Pop-up Modal Sasaran Belajar
+  setupLearningTargetModal();
+
   // ================= 1. SUB-TAB SWITCHING LOGIC =================
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabPanels  = document.querySelectorAll('.tab-panel');
@@ -991,7 +1130,304 @@ export function init() {
     });
   }
 
-  // ================= 4. INTERAKTIF FORM STUDI KASUS =================
+  // ================= 4. SUB-TAB SWITCHING STUDI KASUS (SISTEM VS GURU) =================
+  const subtabBtnSistem  = document.getElementById('subtab-btn-sistem');
+  const subtabBtnGuru    = document.getElementById('subtab-btn-guru');
+  const subpanelSistem   = document.getElementById('subpanel-studi-sistem');
+  const subpanelGuru     = document.getElementById('subpanel-studi-guru');
+
+  const switchSubtabStudi = (target) => {
+    if (target === 'sistem') {
+      subtabBtnSistem?.classList.add('bg-[#0E4632]', 'text-white', 'shadow-xs', 'font-black');
+      subtabBtnSistem?.classList.remove('bg-transparent', 'text-gray-600', 'font-bold');
+      subtabBtnGuru?.classList.remove('bg-[#0E4632]', 'text-white', 'shadow-xs', 'font-black');
+      subtabBtnGuru?.classList.add('bg-transparent', 'text-gray-600', 'font-bold');
+      subpanelSistem?.classList.remove('hidden');
+      subpanelGuru?.classList.add('hidden');
+    } else {
+      subtabBtnGuru?.classList.add('bg-[#0E4632]', 'text-white', 'shadow-xs', 'font-black');
+      subtabBtnGuru?.classList.remove('bg-transparent', 'text-gray-600', 'font-bold');
+      subtabBtnSistem?.classList.remove('bg-[#0E4632]', 'text-white', 'shadow-xs', 'font-black');
+      subtabBtnSistem?.classList.add('bg-transparent', 'text-gray-600', 'font-bold');
+      subpanelGuru?.classList.remove('hidden');
+      subpanelSistem?.classList.add('hidden');
+    }
+  };
+
+  if (subtabBtnSistem) {
+    subtabBtnSistem.addEventListener('click', () => switchSubtabStudi('sistem'));
+  }
+  if (subtabBtnGuru) {
+    subtabBtnGuru.addEventListener('click', () => switchSubtabStudi('guru'));
+  }
+
+  // ================= 4A. STUDI KASUS INTERAKTIF (EVALUASI OTOMATIS SISTEM) =================
+  const containerKalimat   = document.getElementById('container-kalimat-kasus');
+  const counterTerpilih    = document.getElementById('counter-terpilih');
+  const btnResetPilihan    = document.getElementById('btn-reset-pilihan');
+  const btnPeriksaJawaban  = document.getElementById('btn-periksa-jawaban');
+  const panelHasilJawaban  = document.getElementById('panel-hasil-jawaban');
+  const badgeStatus        = document.getElementById('badge-studikasus-status');
+
+  const existingStudi = getStorage('sibela_studikasus', null);
+  const existingKalimat = existingStudi?.interaktif_kalimat || existingStudi?.kalimat_terpilih;
+  let selectedKalimatIds = new Set(
+    existingKalimat && Array.isArray(existingKalimat)
+      ? existingKalimat.map(Number)
+      : []
+  );
+
+  const renderPlaceholderHasil = () => {
+    if (!panelHasilJawaban) return;
+    panelHasilJawaban.innerHTML = `
+      <div class="text-center py-10 px-4 space-y-3">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-[#0E4632] flex items-center justify-center mx-auto mb-2 border border-emerald-100 shadow-xs">
+          <svg class="w-7 h-7 text-[#0E4632]" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-11.25 0h11.25"/>
+          </svg>
+        </div>
+        <h4 class="text-base font-black text-gray-900 tracking-tight">Hasil Jawaban &amp; Evaluasi Sistem</h4>
+        <p class="text-xs text-gray-500 leading-relaxed max-w-sm mx-auto">
+          Pilihlah kalimat-kalimat pada narasi studi kasus di sebelah kiri, lalu tekan tombol <strong>"Periksa Jawaban"</strong> untuk melihat penilaian otomatis sistem.
+        </p>
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-center gap-4 text-[11px] font-bold text-gray-400">
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> 5 Kalimat Sishankamrata Tepat</span>
+          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> 3 Distraktor</span>
+        </div>
+      </div>
+    `;
+  };
+
+  const renderEvaluasiHasil = (evalResult) => {
+    if (!panelHasilJawaban) return;
+    panelHasilJawaban.innerHTML = `
+      <div class="space-y-4">
+        
+        <!-- Skor Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-gray-100 flex-wrap gap-2">
+          <div>
+            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Penilaian Otomatis Sistem</span>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-2xl sm:text-3xl font-black text-[#0E4632]">${evalResult.score}</span>
+              <span class="text-xs font-bold text-gray-400">/ 100</span>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-black border ${evalResult.badgeColor}">
+            ${evalResult.predikat}
+          </span>
+        </div>
+
+        <!-- Banner Catatan Feedback Edukatif -->
+        <div class="p-3 rounded-2xl ${evalResult.score >= 80 ? 'bg-emerald-50 text-emerald-950 border border-emerald-200' : 'bg-amber-50 text-amber-950 border border-amber-200'} text-xs leading-relaxed">
+          ${evalResult.pesan}
+        </div>
+
+        <!-- Seksi BETUL -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-black text-emerald-900">
+            <span class="flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">✓</span>
+              <span>Betul (${evalResult.correctSelected.length} dari ${evalResult.totalCorrect} Kalimat Tepat)</span>
+            </span>
+            <span class="text-[11px] font-bold text-emerald-700">+${evalResult.correctSelected.length * 20} Poin</span>
+          </div>
+
+          ${evalResult.correctSelected.length > 0 ? `
+            <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
+              ${evalResult.correctSelected.map(item => `
+                <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs space-y-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${item.kategoriBadge}">
+                      ${item.kategori}
+                    </span>
+                    <span class="text-[10px] font-bold text-emerald-700">Kalimat ${item.id}</span>
+                  </div>
+                  <p class="font-medium text-emerald-950 italic">"${item.teks}"</p>
+                  <p class="text-[11px] text-emerald-800 leading-snug pt-1 border-t border-emerald-200/60 font-sans">
+                    <strong>Penjelasan:</strong> ${item.alasan}
+                  </p>
+                </div>
+              `).join('')}
+            </div>
+          ` : `
+            <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 text-xs text-gray-500 italic text-center">
+              Belum ada kalimat tepat yang berhasil kamu identifikasi.
+            </div>
+          `}
+        </div>
+
+        <!-- Seksi SALAH / PERLU DIPERBAIKI -->
+        <div class="space-y-2 pt-2 border-t border-gray-100">
+          <div class="flex items-center justify-between text-xs font-black text-rose-900">
+            <span class="flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-rose-600 text-white flex items-center justify-center text-[10px] font-bold">✕</span>
+              <span>Salah / Perlu Diperbaiki (${evalResult.wrongSelected.length + evalResult.correctMissed.length} Poin)</span>
+            </span>
+            ${evalResult.wrongSelected.length > 0 ? `<span class="text-[11px] font-bold text-rose-700">-${evalResult.wrongSelected.length * 15} Poin</span>` : ''}
+          </div>
+
+          <div class="space-y-2 max-h-56 overflow-y-auto pr-1">
+            ${evalResult.wrongSelected.map(item => `
+              <div class="p-3 rounded-xl bg-rose-50/70 border border-rose-200 text-xs space-y-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${item.kategoriBadge}">
+                    Keliru Dipilih • ${item.kategori}
+                  </span>
+                  <span class="text-[10px] font-bold text-rose-700">Kalimat ${item.id}</span>
+                </div>
+                <p class="font-medium text-rose-950 italic">"${item.teks}"</p>
+                <p class="text-[11px] text-rose-800 leading-snug pt-1 border-t border-rose-200/60 font-sans">
+                  <strong>Koreksi:</strong> ${item.alasan}
+                </p>
+              </div>
+            `).join('')}
+
+            ${evalResult.correctMissed.map(item => `
+              <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-xs space-y-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300">
+                    Terlewat • ${item.kategori}
+                  </span>
+                  <span class="text-[10px] font-bold text-amber-800">Kalimat ${item.id}</span>
+                </div>
+                <p class="font-medium text-amber-950 italic">"${item.teks}"</p>
+                <p class="text-[11px] text-amber-900 leading-snug pt-1 border-t border-amber-200/60 font-sans">
+                  <strong>Poin Belajar:</strong> Kalimat ini sebenarnya merupakan penerapan Sishankamnas yang tepat. ${item.alasan}
+                </p>
+              </div>
+            `).join('')}
+
+            ${evalResult.wrongSelected.length === 0 && evalResult.correctMissed.length === 0 ? `
+              <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 font-bold text-center">
+                Luar biasa! Tidak ada kalimat salah yang dipilih dan semua kalimat tepat berhasil kamu temukan.
+              </div>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- Tombol Simpan & Tuntaskan / Coba Lagi -->
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-between gap-2 flex-wrap">
+          <button
+            type="button"
+            id="btn-coba-lagi"
+            class="px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold transition-all cursor-pointer active:scale-95"
+          >
+            <span>Coba Ulangi</span>
+          </button>
+          <button
+            type="button"
+            id="btn-simpan-hasil-studi"
+            class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#0E4632] hover:bg-[#062B20] text-white text-xs font-black shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+          >
+            <span>Simpan Nilai Sistem</span>
+            ${IC.arrowRight}
+          </button>
+        </div>
+
+      </div>
+    `;
+
+    // Pasang listener pada tombol Coba Ulangi & Simpan
+    const btnCobaLagi = document.getElementById('btn-coba-lagi');
+    if (btnCobaLagi) {
+      btnCobaLagi.addEventListener('click', () => {
+        selectedKalimatIds.clear();
+        updateKalimatUI();
+        renderPlaceholderHasil();
+        showToast('Pilihan telah direset. Silakan telaah narasi dan pilih kembali.', 'info');
+      });
+    }
+
+    const btnSimpanHasil = document.getElementById('btn-simpan-hasil-studi');
+    if (btnSimpanHasil) {
+      btnSimpanHasil.addEventListener('click', () => {
+        const currentData = getStorage('sibela_studikasus', {}) || {};
+        const payload = {
+          ...currentData,
+          tipe: 'identifikasi_interaktif',
+          interaktif_skor: evalResult.score,
+          interaktif_predikat: evalResult.predikat,
+          interaktif_benar: evalResult.correctSelected.length,
+          interaktif_salah: evalResult.wrongSelected.length,
+          interaktif_terlewat: evalResult.correctMissed.length,
+          interaktif_kalimat: Array.from(selectedKalimatIds),
+          interaktif_timestamp: new Date().toISOString(),
+          skor: evalResult.score,
+          completed: true
+        };
+
+        setStorage('sibela_studikasus', payload);
+        setProgressStep('modul1', true);
+
+        showToast('Nilai studi kasus interaktif berhasil disimpan! Modul 1 tuntas.', 'success');
+        panelHasilJawaban?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  };
+
+  const updateKalimatUI = () => {
+    const kalimatEls = document.querySelectorAll('.kalimat-item');
+    kalimatEls.forEach(el => {
+      const id = Number(el.getAttribute('data-id'));
+      const textSpan = el.querySelector('.kalimat-text');
+      if (selectedKalimatIds.has(id)) {
+        el.className = 'kalimat-item cursor-pointer inline transition-all duration-150 px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-950 font-semibold border-b-2 border-emerald-600 shadow-xs my-0.5 select-none';
+        if (textSpan) textSpan.className = 'kalimat-text underline decoration-emerald-600/60 decoration-2 underline-offset-2';
+      } else {
+        el.className = 'kalimat-item cursor-pointer inline transition-all duration-150 px-1 py-0.5 rounded border border-transparent hover:border-emerald-300 hover:bg-emerald-50/80 my-0.5 select-none';
+        if (textSpan) textSpan.className = 'kalimat-text text-gray-800';
+      }
+    });
+
+    if (counterTerpilih) {
+      counterTerpilih.textContent = `${selectedKalimatIds.size} kalimat dipilih`;
+    }
+  };
+
+  // Pasang click listener pada setiap kalimat narasi
+  document.querySelectorAll('.kalimat-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = Number(el.getAttribute('data-id'));
+      if (selectedKalimatIds.has(id)) {
+        selectedKalimatIds.delete(id);
+      } else {
+        selectedKalimatIds.add(id);
+      }
+      updateKalimatUI();
+    });
+  });
+
+  if (btnResetPilihan) {
+    btnResetPilihan.addEventListener('click', () => {
+      selectedKalimatIds.clear();
+      updateKalimatUI();
+      renderPlaceholderHasil();
+    });
+  }
+
+  if (btnPeriksaJawaban) {
+    btnPeriksaJawaban.addEventListener('click', () => {
+      if (selectedKalimatIds.size === 0) {
+        showToast('Silakan ketuk/pilih minimal 1 kalimat sebelum memeriksa jawaban.', 'warning');
+        return;
+      }
+      const evalResult = evaluateStudiKasusMateri1(Array.from(selectedKalimatIds));
+      renderEvaluasiHasil(evalResult);
+      showToast(`Evaluasi selesai! Skor Anda: ${evalResult.score}/100`, evalResult.score >= 80 ? 'success' : 'info');
+      panelHasilJawaban?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  // Initial State Rendering Interaktif
+  updateKalimatUI();
+  if ((existingStudi?.interaktif_skor !== undefined || existingStudi?.skor !== undefined) && selectedKalimatIds.size > 0) {
+    const prevEval = evaluateStudiKasusMateri1(Array.from(selectedKalimatIds));
+    renderEvaluasiHasil(prevEval);
+  } else {
+    renderPlaceholderHasil();
+  }
+
+  // ================= 4B. LEMBAR ANALISIS KASUS LOKAL (PENILAIAN GURU) =================
   const formStudi         = document.getElementById('form-studikasus');
   const savedCard         = document.getElementById('studikasus-saved-card');
   const btnEditStudi      = document.getElementById('btn-edit-studikasus');
@@ -1004,7 +1440,6 @@ export function init() {
   const countSolusi       = document.getElementById('char-counter-solusi');
   const errorContoh       = document.getElementById('error-contoh');
   const errorSolusi       = document.getElementById('error-solusi');
-  const badgeStatus       = document.getElementById('badge-studikasus-status');
 
   const prevKategori = document.getElementById('preview-kategori');
   const prevContoh   = document.getElementById('preview-contoh');
@@ -1146,12 +1581,15 @@ export function init() {
         return;
       }
 
+      const currentStored = getStorage('sibela_studikasus', {}) || {};
       const payload = {
+        ...currentStored,
         kategori: kategoriVal,
         kategori_label: kategoriLabel,
         contoh_ancaman: contohVal,
         solusi: solusiVal,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        completed: true
       };
 
       setStorage('sibela_studikasus', payload);
@@ -1166,15 +1604,7 @@ export function init() {
       if (savedCard) savedCard.classList.remove('hidden');
       if (previewBox) previewBox.classList.add('hidden');
 
-      if (badgeStatus) {
-        badgeStatus.innerHTML = `
-          <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300">
-            ${IC.check} Jawaban Tersimpan
-          </span>
-        `;
-      }
-
-      showToast('Analisis studi kasus berhasil disimpan! Modul 1 tuntas.', 'success');
+      showToast('Lembar analisis kasus lokal berhasil disimpan untuk penilaian guru!', 'success');
       savedCard?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }

@@ -17,6 +17,7 @@ import {
   showToast,
   formatTanggalID
 } from '../js/utils.js';
+import { renderLearningTargetModal, setupLearningTargetModal } from '../data/target-belajar.js';
 
 const STAGE_W = 1400;
 const STAGE_H = 860;
@@ -330,8 +331,19 @@ export function render() {
             </h1>
           </div>
 
-          <div class="hidden sm:flex items-center gap-2 self-start sm:self-center">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-100 border border-white/20 shadow-xs">
+          <div class="flex items-center gap-2 self-start sm:self-center">
+            <button
+              type="button"
+              id="btn-open-target-modal"
+              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black bg-[#E5A024] hover:bg-amber-400 active:scale-95 text-gray-900 shadow-sm transition-all cursor-pointer"
+              title="Lihat Apa yang Dipelajari, Capaian & Tujuan Pembelajaran"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+              </svg>
+              <span>Capaian &amp; Tujuan</span>
+            </button>
+            <span class="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-100 border border-white/20 shadow-xs">
               <span class="w-2 h-2 rounded-full bg-[#E5A024] animate-pulse"></span>
               <span>Tahap 4 dari 4: TP 10.D.8</span>
             </span>
@@ -343,6 +355,9 @@ export function render() {
       <div id="mindmap-root" class="space-y-6">
         <!-- Di-render dinamis oleh renderMindMapWorkspace() -->
       </div>
+
+      <!-- Pop-up Modal Capaian & Tujuan Pembelajaran Mind Map -->
+      ${renderLearningTargetModal('mindmap')}
 
     </div>
   `;
@@ -360,6 +375,7 @@ export function init() {
     applyStageTransform();
   });
   ensureGlobalPointerListeners();
+  setupLearningTargetModal();
 }
 
 /**

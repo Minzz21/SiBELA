@@ -6,6 +6,7 @@
 
 import { ORGANISASI_DATA } from '../data/modul2.js';
 import { getStorage, setStorage, setProgressStep, showToast } from '../js/utils.js';
+import { renderLearningTargetModal, setupLearningTargetModal } from '../data/target-belajar.js';
 
 const STORAGE_KEY_EXPLORED = 'sibela_modul2_explored';
 const STORAGE_KEY_LAPORAN  = 'sibela_laporan_peran';
@@ -127,8 +128,19 @@ export function render() {
             
           </div>
 
-          <div class="hidden sm:flex items-center gap-2 self-start sm:self-center">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-100 border border-white/20 shadow-xs">
+          <div class="flex items-center gap-2 self-start sm:self-center">
+            <button
+              type="button"
+              id="btn-open-target-modal"
+              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-black bg-[#E5A024] hover:bg-amber-400 active:scale-95 text-gray-900 shadow-sm transition-all cursor-pointer"
+              title="Lihat Apa yang Dipelajari, Capaian & Tujuan Pembelajaran"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/>
+              </svg>
+              <span>Capaian &amp; Tujuan</span>
+            </button>
+            <span class="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/10 text-emerald-100 border border-white/20 shadow-xs">
               <span class="w-2 h-2 rounded-full bg-[#E5A024] animate-pulse"></span>
               <span>Tahap 2 dari 4: Diplomasi Dunia</span>
             </span>
@@ -787,6 +799,9 @@ export function render() {
 
       </section>
 
+      <!-- Pop-up Modal Capaian & Tujuan Pembelajaran -->
+      ${renderLearningTargetModal('modul2')}
+
     </div>
   `;
 }
@@ -796,6 +811,9 @@ export function render() {
  */
 export function init() {
   console.log('🌏 Modul 2: Peta Geopolitik Riil (Leaflet.js) initialized.');
+
+  // Inisialisasi Pop-up Modal Sasaran Belajar
+  setupLearningTargetModal();
 
   // ================= 1. SUB-TAB SWITCHING LOGIC =================
   const tabButtons = document.querySelectorAll('.tab-btn');

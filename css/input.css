@@ -87,6 +87,34 @@
   .animate-spin-slow {
     animation: spin 18s linear infinite;
   }
+
+  /* PIN verification shake animation */
+  .animate-shake {
+    animation: shake 0.4s ease-in-out;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+@media print {
+  header, nav, aside, #nav-drawer, #drawer-overlay, .no-print {
+    display: none !important;
+  }
+  body, main {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .print-clean {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
 }
 
 @keyframes marquee {
